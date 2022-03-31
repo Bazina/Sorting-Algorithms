@@ -1,4 +1,4 @@
-import SortingStrategies.BucketSort;
+import Sorting.SortingStrategies.BucketSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

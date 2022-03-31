@@ -1,4 +1,5 @@
-import SortingStrategies.MergeSort;
+import Sorting.SortingStrategies.QuickSort;
+import Sorting.Sorting;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,7 +16,7 @@ public class Main {
             }
         };
 
-        Sorting.Sort(arrayList, new MergeSort<>(), Comparator.reverseOrder());
+        Sorting.Sort(arrayList, new QuickSort<>(), Comparator.reverseOrder());
 
         System.out.println(arrayList);
     }
