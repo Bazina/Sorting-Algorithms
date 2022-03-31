@@ -1,4 +1,4 @@
-package SortingStrategies;
+package Sorting.SortingStrategies;
 
 import java.util.Comparator;
 import java.util.List;

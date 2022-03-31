@@ -1,4 +1,4 @@
-import SortingStrategies.SelectionSort;
+import Sorting.SortingStrategies.SelectionSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

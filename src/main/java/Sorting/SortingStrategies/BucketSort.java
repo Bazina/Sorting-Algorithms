@@ -1,4 +1,4 @@
-package SortingStrategies;
+package Sorting.SortingStrategies;
 
 import java.util.ArrayList;
 import java.util.Collections;

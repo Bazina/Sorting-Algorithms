@@ -1,7 +1,8 @@
-import SortingStrategies.MergeSort;
-import SortingStrategies.SortStrategy;
+package Sorting;
 
-import java.util.ArrayList;
+import Sorting.SortingStrategies.MergeSort;
+import Sorting.SortingStrategies.SortStrategy;
+
 import java.util.Comparator;
 import java.util.List;
 
