@@ -1,12 +1,14 @@
-import Sorting.SortingStrategies.BubbleSort;
+package Sorting.SortingStrategies;
+
+import Sorting.SortingStrategies.QuickSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
-class BubbleSortTest {
-    BubbleSort<Integer> BubbleSort = new BubbleSort<>();
+class QuickSortTest {
+    QuickSort<Integer> QuickSort = new QuickSort<>();
 
     @Test
     void sortTest1() {
@@ -22,7 +24,7 @@ class BubbleSortTest {
 
         String string = "[8, 4, 3, 2, 1]";
 
-        this.BubbleSort.sort(arrayList, Comparator.reverseOrder());
+        this.QuickSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -36,7 +38,7 @@ class BubbleSortTest {
 
         String string = "[8]";
 
-        this.BubbleSort.sort(arrayList, Comparator.reverseOrder());
+        this.QuickSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -51,7 +53,7 @@ class BubbleSortTest {
 
         String string = "[9, 8]";
 
-        this.BubbleSort.sort(arrayList, Comparator.reverseOrder());
+        this.QuickSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -70,7 +72,7 @@ class BubbleSortTest {
 
         String string = "[1, 2, 3, 4, 5, 6]";
 
-        this.BubbleSort.sort(arrayList, Comparator.naturalOrder());
+        this.QuickSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -89,7 +91,7 @@ class BubbleSortTest {
 
         String string = "[1, 2, 3, 4, 5, 6]";
 
-        this.BubbleSort.sort(arrayList, Comparator.naturalOrder());
+        this.QuickSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 }

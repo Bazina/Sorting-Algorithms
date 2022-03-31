@@ -1,15 +1,17 @@
-import Sorting.SortingStrategies.QuickSort;
+package Heaps;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
-class QuickSortTest {
-    QuickSort<Integer> QuickSort = new QuickSort<>();
+import static org.junit.jupiter.api.Assertions.*;
+
+class BuildMaxHeapTest {
+    BuildMaxHeap<Integer> buildMaxHeap = new BuildMaxHeap<>();
 
     @Test
-    void sortTest1() {
+    void buildHeap1() {
         ArrayList<Integer> arrayList = new ArrayList<>() {
             {
                 add(8);
@@ -20,14 +22,14 @@ class QuickSortTest {
             }
         };
 
-        String string = "[8, 4, 3, 2, 1]";
+        String string = "[8, 3, 4, 1, 2]";
+        buildMaxHeap.buildHeap(arrayList);
 
-        this.QuickSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
     @Test
-    void sortTest2() {
+    void buildHeap2() {
         ArrayList<Integer> arrayList = new ArrayList<>() {
             {
                 add(8);
@@ -35,61 +37,58 @@ class QuickSortTest {
         };
 
         String string = "[8]";
+        buildMaxHeap.buildHeap(arrayList);
 
-        this.QuickSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
     @Test
-    void sortTest3() {
+    void maxHeapify1() {
         ArrayList<Integer> arrayList = new ArrayList<>() {
             {
                 add(8);
-                add(9);
+                add(2);
+                add(4);
+                add(1);
+                add(3);
             }
         };
 
-        String string = "[9, 8]";
+        String string = "[8, 3, 4, 1, 2]";
+        buildMaxHeap.maxHeapify(arrayList, 1);
 
-        this.QuickSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
     @Test
-    void sortTest4() {
+    void maxHeapify2() {
         ArrayList<Integer> arrayList = new ArrayList<>() {
             {
-                add(1);
                 add(2);
-                add(3);
+                add(8);
                 add(4);
-                add(5);
-                add(6);
+                add(1);
+                add(3);
             }
         };
 
-        String string = "[1, 2, 3, 4, 5, 6]";
+        String string = "[2, 8, 4, 1, 3]";
+        buildMaxHeap.maxHeapify(arrayList, 1);
 
-        this.QuickSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
     @Test
-    void sortTest5() {
+    void maxHeapify3() {
         ArrayList<Integer> arrayList = new ArrayList<>() {
             {
-                add(6);
-                add(5);
-                add(4);
-                add(3);
-                add(2);
-                add(1);
+                add(8);
             }
         };
 
-        String string = "[1, 2, 3, 4, 5, 6]";
+        String string = "[8]";
+        buildMaxHeap.maxHeapify(arrayList, 0);
 
-        this.QuickSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 }
