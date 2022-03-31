@@ -1,12 +1,14 @@
-import Sorting.SortingStrategies.MergeSort;
+package Sorting.SortingStrategies;
+
+import Sorting.SortingStrategies.InsertionSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
-class MergeSortTest {
-    MergeSort<Integer> MergeSort = new MergeSort<>();
+class InsertionSortTest {
+    InsertionSort<Integer> InsertionSort = new InsertionSort<>();
 
     @Test
     void sortTest1() {
@@ -22,7 +24,7 @@ class MergeSortTest {
 
         String string = "[8, 4, 3, 2, 1]";
 
-        this.MergeSort.sort(arrayList, Comparator.reverseOrder());
+        this.InsertionSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -36,7 +38,7 @@ class MergeSortTest {
 
         String string = "[8]";
 
-        this.MergeSort.sort(arrayList, Comparator.reverseOrder());
+        this.InsertionSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -51,7 +53,7 @@ class MergeSortTest {
 
         String string = "[9, 8]";
 
-        this.MergeSort.sort(arrayList, Comparator.reverseOrder());
+        this.InsertionSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -70,7 +72,7 @@ class MergeSortTest {
 
         String string = "[1, 2, 3, 4, 5, 6]";
 
-        this.MergeSort.sort(arrayList, Comparator.naturalOrder());
+        this.InsertionSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -89,7 +91,7 @@ class MergeSortTest {
 
         String string = "[1, 2, 3, 4, 5, 6]";
 
-        this.MergeSort.sort(arrayList, Comparator.naturalOrder());
+        this.InsertionSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 }

@@ -1,12 +1,15 @@
-import Sorting.SortingStrategies.InsertionSort;
+package Sorting.SortingStrategies;
+
+import Sorting.SortingStrategies.BucketSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
-class InsertionSortTest {
-    InsertionSort<Integer> InsertionSort = new InsertionSort<>();
+
+class BucketSortTest {
+    BucketSort<Integer> BucketSort = new BucketSort<>();
 
     @Test
     void sortTest1() {
@@ -22,7 +25,7 @@ class InsertionSortTest {
 
         String string = "[8, 4, 3, 2, 1]";
 
-        this.InsertionSort.sort(arrayList, Comparator.reverseOrder());
+        this.BucketSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -36,7 +39,7 @@ class InsertionSortTest {
 
         String string = "[8]";
 
-        this.InsertionSort.sort(arrayList, Comparator.reverseOrder());
+        this.BucketSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -51,7 +54,7 @@ class InsertionSortTest {
 
         String string = "[9, 8]";
 
-        this.InsertionSort.sort(arrayList, Comparator.reverseOrder());
+        this.BucketSort.sort(arrayList, Comparator.reverseOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -70,7 +73,7 @@ class InsertionSortTest {
 
         String string = "[1, 2, 3, 4, 5, 6]";
 
-        this.InsertionSort.sort(arrayList, Comparator.naturalOrder());
+        this.BucketSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -89,7 +92,7 @@ class InsertionSortTest {
 
         String string = "[1, 2, 3, 4, 5, 6]";
 
-        this.InsertionSort.sort(arrayList, Comparator.naturalOrder());
+        this.BucketSort.sort(arrayList, Comparator.naturalOrder());
         Assertions.assertEquals(string, arrayList.toString());
     }
 }
