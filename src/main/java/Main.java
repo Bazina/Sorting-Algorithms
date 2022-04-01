@@ -19,22 +19,30 @@ public class Main {
         FileWriter outputFile = new FileWriter(file);
         writer = new CSVWriter(outputFile);
 
-        String[] header = {"Input Size", "Bubble Sort", "Selection Sort", "Insertion Sort",
+        String[] header = {"Input Size", "Bubble Sort","Cocktail Shaker" , "Gnome Sort", "Selection Sort",
+                "Insertion Sort", "Double Selection Sort" ,"Shell Sort",
                 "Heap Sort", "Merge Sort", "Quick Sort"};
         writer.writeNext(header);
 
-        for (int size = 10000; size <= 100000; size += 1000) {
+        for (int size = 10000; size <= 40000; size += 1000) {
             first = Randomizer.random(size);
             System.out.println("Input: " + size);
             double bubbleTime = sort(new BubbleSort<>(), "Bubble");
+            double cocktailShakerTime = sort(new CocktailShakerSort<>(), "Cocktail Shaker");
+            double gnomeTime = sort(new GnomeSort<>(), "Gnome");
             double selectionTime = sort(new SelectionSort<>(), "Selection");
             double insertionTime = sort(new InsertionSort<>(), "Insertion");
+            double doubleSelectionTime = sort(new DoubleSelectionSort<>(), "Double Selection");
+            double shellTime = sort(new ShellSort<>(), "Shell");
+//            double bitonicTime = sort(new BitonicSort<>() , "Bitonic") ;
             double heapTime = sort(new HeapSort<>(), "Heap");
             double mergeTime = sort(new MergeSort<>(), "Merge");
             double quickTime = sort(new QuickSort<>(), "Quick");
 
             String[] data = {String.valueOf(size),
-                    String.valueOf(bubbleTime), String.valueOf(selectionTime), String.valueOf(insertionTime),
+                    String.valueOf(bubbleTime),String.valueOf(cocktailShakerTime), String.valueOf(gnomeTime),
+                    String.valueOf(selectionTime), String.valueOf(insertionTime),
+                    String.valueOf(doubleSelectionTime),String.valueOf(shellTime),
                     String.valueOf(heapTime), String.valueOf(mergeTime), String.valueOf(quickTime)};
             writer.writeNext(data);
 
