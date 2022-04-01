@@ -1,6 +1,5 @@
 package Sorting.SortingStrategies;
 
-import Sorting.SortingStrategies.CountingSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
