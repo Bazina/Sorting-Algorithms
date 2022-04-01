@@ -25,7 +25,7 @@ public class Main {
 
         for (int size = 10000; size <= 100000; size += 1000) {
             first = Randomizer.random(size);
-            System.out.println("Input : " + size);
+            System.out.println("Input: " + size);
             double bubbleTime = sort(new BubbleSort<>(), "Bubble");
             double selectionTime = sort(new SelectionSort<>(), "Selection");
             double insertionTime = sort(new InsertionSort<>(), "Insertion");
@@ -49,7 +49,7 @@ public class Main {
         Sorting.Sort(second, sortStrategy, Comparator.reverseOrder());
 
         double time = System.currentTimeMillis() - start;
-        System.out.println(name + " Sort : " + time + " ms");
+        System.out.println(name + " Sort: " + time + " ms");
 
         return time;
     }
