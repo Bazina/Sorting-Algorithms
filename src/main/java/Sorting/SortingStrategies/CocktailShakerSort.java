@@ -16,7 +16,7 @@ public class CocktailShakerSort<T> implements SortStrategy<T> {
 
         for (; first < last; first++) {
             isSorted = true;
-            for (int j = first; j < last-1; j++) {
+            for (int j = first; j < last - 1; j++) {
                 int cmp = comparator.compare(arrayList.get(j), arrayList.get(j + 1));
 
                 if (cmp > 0) {
@@ -25,7 +25,7 @@ public class CocktailShakerSort<T> implements SortStrategy<T> {
                 }
             }
 
-            last -- ;
+            last--;
             if (isSorted)
                 return;
 
