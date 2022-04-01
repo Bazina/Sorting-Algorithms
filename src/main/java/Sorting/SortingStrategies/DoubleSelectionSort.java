@@ -32,6 +32,7 @@ public class DoubleSelectionSort<T> implements SortStrategy<T> {
 
             //when i==maxItemIndex we need to keep track of maximum element after first swapping
             if (arrayList.get(i) == maxVal) maxItemIndex = minItemIndex;
+
             swap(arrayList, minItemIndex, i);
             swap(arrayList, maxItemIndex, n - 1);
             n--;
