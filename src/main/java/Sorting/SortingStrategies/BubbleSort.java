@@ -1,5 +1,7 @@
 package Sorting.SortingStrategies;
 
+import Sorting.Utils;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class BubbleSort<T> implements SortStrategy<T> {
                 int cmp = comparator.compare(arrayList.get(j - 1), arrayList.get(j));
 
                 if (cmp > 0) {
-                    swap(arrayList, j - 1, j);
+                    Utils.swap(arrayList, j - 1, j);
                     isSorted = false;
                 }
             }
@@ -20,11 +22,5 @@ public class BubbleSort<T> implements SortStrategy<T> {
             if (isSorted)
                 return;
         }
-    }
-
-    private static <T> void swap(List<T> arrayList, int first, int second) {
-        T temp = arrayList.get(first);
-        arrayList.set(first, arrayList.get(second));
-        arrayList.set(second, temp);
     }
 }

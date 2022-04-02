@@ -19,9 +19,9 @@ public class Main {
         FileWriter outputFile = new FileWriter(file);
         writer = new CSVWriter(outputFile);
 
-        String[] header = {"Input Size", "Bubble Sort", "Pancake Sort",
+        String[] header = {"Input Size", "Bubble Sort", "Pancake Sort","Odd Even Sort" ,
                 "Cocktail Shaker", "Gnome Sort", "Selection Sort",
-                "Insertion Sort", "Double Selection Sort", "Shell Sort",
+                "Insertion Sort", "Double Selection Sort", "Comb Sort" ,"Shell Sort",
                 "Heap Sort", "Merge Sort", "Quick Sort"};
         writer.writeNext(header);
 
@@ -31,19 +31,21 @@ public class Main {
 //            double bogoSort = sort(new BogoSort<>() , "Bogo") ;
             double bubbleTime = sort(new BubbleSort<>(), "Bubble");
             double pancakeTime = sort(new PancakeSort<>(), "Pancake");
+            double oddEvenTime = sort(new OddEvenSort<>() , "Odd Even") ;
             double cocktailShakerTime = sort(new CocktailShakerSort<>(), "Cocktail Shaker");
             double gnomeTime = sort(new GnomeSort<>(), "Gnome");
             double selectionTime = sort(new SelectionSort<>(), "Selection");
             double insertionTime = sort(new InsertionSort<>(), "Insertion");
             double doubleSelectionTime = sort(new DoubleSelectionSort<>(), "Double Selection");
+            double combTime = sort(new CombSort<>() , "Comb") ;
             double shellTime = sort(new ShellSort<>(), "Shell");
             double heapTime = sort(new HeapSort<>(), "Heap");
             double mergeTime = sort(new MergeSort<>(), "Merge");
             double quickTime = sort(new QuickSort<>(), "Quick");
 
-            String[] data = {String.valueOf(size), String.valueOf(bubbleTime), String.valueOf(pancakeTime),
+            String[] data = {String.valueOf(size), String.valueOf(bubbleTime), String.valueOf(pancakeTime),String.valueOf(oddEvenTime),
                     String.valueOf(cocktailShakerTime), String.valueOf(gnomeTime), String.valueOf(selectionTime),
-                    String.valueOf(insertionTime), String.valueOf(doubleSelectionTime), String.valueOf(shellTime),
+                    String.valueOf(insertionTime), String.valueOf(doubleSelectionTime),String.valueOf(combTime) , String.valueOf(shellTime),
                     String.valueOf(heapTime), String.valueOf(mergeTime), String.valueOf(quickTime)};
             writer.writeNext(data);
 

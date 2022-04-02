@@ -1,5 +1,7 @@
 package Sorting.SortingStrategies;
 
+import Sorting.Utils;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +21,8 @@ public class BogoSort<T> implements SortStrategy<T> {
 
         for (int i = 0; i < arrayList.size(); i++) {
             int index = Math.abs(rd.nextInt() % arrayList.size()) ;
-            swap(arrayList, i, index);
+            Utils.swap(arrayList, i, index);
         }
-    }
-
-    private <T> void swap(List<T> arrayList, int first, int second) {
-        T temp = arrayList.get(first);
-        arrayList.set(first, arrayList.get(second));
-        arrayList.set(second, temp);
     }
 
     private boolean isSorted(List<T> arrayList, Comparator<T> comparator) {

@@ -1,5 +1,7 @@
 package Sorting.SortingStrategies;
 
+import Sorting.Utils;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,17 +30,11 @@ public class BitonicSort<T> implements SortStrategy<T> {
         for (int i = low; i < low + k; i++) {
             int cmp = comparator.compare(arrayList.get(i), arrayList.get(i + k));
             if (cmp > 0) {
-                swap(arrayList, i, i + k);
+                Utils.swap(arrayList, i, i + k);
             }
         }
 
         bitonicMerge(arrayList, comparator, low, k);
         bitonicMerge(arrayList, comparator, low + k, k);
-    }
-
-    private static <T> void swap(List<T> arrayList, int first, int second) {
-        T temp = arrayList.get(first);
-        arrayList.set(first, arrayList.get(second));
-        arrayList.set(second, temp);
     }
 }

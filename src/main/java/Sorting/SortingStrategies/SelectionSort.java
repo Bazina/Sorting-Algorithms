@@ -1,5 +1,7 @@
 package Sorting.SortingStrategies;
 
+import Sorting.Utils;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,13 +16,7 @@ public class SelectionSort<T> implements SortStrategy<T> {
                     minItemIndex = j;
             }
 
-            swap(arrayList, minItemIndex, i);
+            Utils.swap(arrayList, minItemIndex, i);
         }
-    }
-
-    private static <T> void swap(List<T> arrayList, int first, int second) {
-        T temp = arrayList.get(first);
-        arrayList.set(first, arrayList.get(second));
-        arrayList.set(second, temp);
     }
 }

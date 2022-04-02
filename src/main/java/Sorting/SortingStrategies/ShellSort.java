@@ -1,15 +1,11 @@
 package Sorting.SortingStrategies;
 
+import Sorting.Utils;
+
 import java.util.Comparator;
 import java.util.List;
 
 public class ShellSort<T> implements SortStrategy<T> {
-    private static <T> void swap(List<T> arrayList, int first, int second) {
-        T temp = arrayList.get(first);
-        arrayList.set(first, arrayList.get(second));
-        arrayList.set(second, temp);
-    }
-
     @Override
     public void sort(List<T> arrayList, Comparator<T> comparator) {
 
@@ -20,7 +16,7 @@ public class ShellSort<T> implements SortStrategy<T> {
                 for (int j = i; j >= gap; j -= gap) {
 
                     int cmp = comparator.compare(arrayList.get(j), arrayList.get(j - gap));
-                    if (cmp < 0) swap(arrayList, j, j - gap);
+                    if (cmp < 0) Utils.swap(arrayList, j, j - gap);
                     else break;
                 }
             }
