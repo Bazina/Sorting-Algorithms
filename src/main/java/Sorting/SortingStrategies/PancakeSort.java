@@ -11,6 +11,8 @@ public class PancakeSort<T> implements SortStrategy<T> {
                 int cmp = comparator.compare(arrayList.get(large) , arrayList.get(j)) ;
                 if(cmp < 0) large = j ;
             }
+            if(large == i) continue;
+
             flip(arrayList , large);
             flip(arrayList , i);
         }

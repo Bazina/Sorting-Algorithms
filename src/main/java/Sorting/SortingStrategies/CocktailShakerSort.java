@@ -4,12 +4,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class CocktailShakerSort<T> implements SortStrategy<T> {
-    private static <T> void swap(List<T> arrayList, int first, int second) {
-        T temp = arrayList.get(first);
-        arrayList.set(first, arrayList.get(second));
-        arrayList.set(second, temp);
-    }
-
     public void sort(List<T> arrayList, Comparator<T> comparator) {
         boolean isSorted;
         int first = 0, last = arrayList.size();
@@ -38,5 +32,11 @@ public class CocktailShakerSort<T> implements SortStrategy<T> {
             }
 
         }
+    }
+
+    private static <T> void swap(List<T> arrayList, int first, int second) {
+        T temp = arrayList.get(first);
+        arrayList.set(first, arrayList.get(second));
+        arrayList.set(second, temp);
     }
 }

@@ -27,6 +27,7 @@ public class Main {
         for (int size = 10000; size <= 40000; size += 1000) {
             first = Randomizer.random(size);
             System.out.println("Input: " + size);
+//            double bogoSort = sort(new BogoSort<>() , "Bogo") ;
             double bubbleTime = sort(new BubbleSort<>(), "Bubble");
             double pancakeTime = sort(new PancakeSort<>(), "Pancake");
             double cocktailShakerTime = sort(new CocktailShakerSort<>(), "Cocktail Shaker");
