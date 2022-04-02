@@ -19,7 +19,8 @@ public class Main {
         FileWriter outputFile = new FileWriter(file);
         writer = new CSVWriter(outputFile);
 
-        String[] header = {"Input Size", "Bubble Sort", "Pancake Sort", "Cocktail Shaker", "Gnome Sort", "Selection Sort",
+        String[] header = {"Input Size", "Bubble Sort", "Pancake Sort",
+                "Cocktail Shaker", "Gnome Sort", "Selection Sort",
                 "Insertion Sort", "Double Selection Sort", "Shell Sort",
                 "Heap Sort", "Merge Sort", "Quick Sort"};
         writer.writeNext(header);
@@ -36,15 +37,13 @@ public class Main {
             double insertionTime = sort(new InsertionSort<>(), "Insertion");
             double doubleSelectionTime = sort(new DoubleSelectionSort<>(), "Double Selection");
             double shellTime = sort(new ShellSort<>(), "Shell");
-//            double bitonicTime = sort(new BitonicSort<>() , "Bitonic") ;
             double heapTime = sort(new HeapSort<>(), "Heap");
             double mergeTime = sort(new MergeSort<>(), "Merge");
             double quickTime = sort(new QuickSort<>(), "Quick");
 
-            String[] data = {String.valueOf(size),
-                    String.valueOf(bubbleTime), String.valueOf(pancakeTime), String.valueOf(cocktailShakerTime), String.valueOf(gnomeTime),
-                    String.valueOf(selectionTime), String.valueOf(insertionTime),
-                    String.valueOf(doubleSelectionTime), String.valueOf(shellTime),
+            String[] data = {String.valueOf(size), String.valueOf(bubbleTime), String.valueOf(pancakeTime),
+                    String.valueOf(cocktailShakerTime), String.valueOf(gnomeTime), String.valueOf(selectionTime),
+                    String.valueOf(insertionTime), String.valueOf(doubleSelectionTime), String.valueOf(shellTime),
                     String.valueOf(heapTime), String.valueOf(mergeTime), String.valueOf(quickTime)};
             writer.writeNext(data);
 

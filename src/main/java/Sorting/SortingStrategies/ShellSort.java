@@ -17,7 +17,7 @@ public class ShellSort<T> implements SortStrategy<T> {
 
             for (int i = gap; i < arrayList.size(); i++) {
 
-                for (int j = i; j >= gap ; j -= gap) {
+                for (int j = i; j >= gap; j -= gap) {
 
                     int cmp = comparator.compare(arrayList.get(j), arrayList.get(j - gap));
                     if (cmp < 0) swap(arrayList, j, j - gap);

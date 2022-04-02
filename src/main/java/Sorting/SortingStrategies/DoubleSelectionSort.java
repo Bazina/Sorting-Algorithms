@@ -3,7 +3,7 @@ package Sorting.SortingStrategies;
 import java.util.Comparator;
 import java.util.List;
 
-//also named as  cocktail sort due to its similarity to cocktail shaker sort
+//also named as cocktail sort due to its similarity to cocktail shaker sort
 public class DoubleSelectionSort<T> implements SortStrategy<T> {
     private static <T> void swap(List<T> arrayList, int first, int second) {
         T temp = arrayList.get(first);
