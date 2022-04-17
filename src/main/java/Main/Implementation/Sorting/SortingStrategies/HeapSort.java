@@ -1,15 +1,64 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
-import Main.Implementation.Heaps.MaxHeap;
+import Main.Controller.Move;
+import Main.Implementation.Sorting.Utils;
 
 public class HeapSort<T extends Comparable<T>> extends SortAttributes<T> {
+    boolean animate;
+
     @Override
     public void sort() {
-        MaxHeap<T> heapSort = new MaxHeap<>();
-        for (var item : toSort)
-            heapSort.insert(item);
+        animate = moves.isEmpty();
+        Move buffer = null;
 
-        for (int i = 0; i < toSort.size(); i++)
-            toSort.set(i, heapSort.remove());
+        int size = toSort.size();
+        for (int i = size / 2 - 1; i >= 0; i--) {
+            heapify(i, size);
+        }
+
+        for (int i = size - 1; i > 0; i--) {
+            if (animate)
+                buffer = new Move(0, i, (Double) toSort.get(0), (Double) toSort.get(i), true);
+            Utils.swap(toSort, 0, i);
+            moves.add(buffer);
+
+            heapify(0, i);
+        }
+    }
+
+    private void heapify(int i, int size) {
+        Move buffer = null;
+
+        while (2 * i + 1 < size) {
+            int j = 2 * i + 1;
+
+            if (2 * i + 2 < size) {
+                int cmp = comparator.compare(toSort.get(j), toSort.get(2 * i + 2));
+
+                if (animate)
+                    buffer = new Move(j, 2 * i + 2, (Double) toSort.get(j), (Double) toSort.get(2 * i + 2), false);
+                moves.add(buffer);
+
+                if (cmp < 0)
+                    j = 2 * i + 2;
+            }
+
+            int cmp = comparator.compare(toSort.get(j), toSort.get(i));
+            if (animate)
+                buffer = new Move(j, i, (Double) toSort.get(j), (Double) toSort.get(i), false);
+
+
+            if (cmp <= 0) {
+                moves.add(buffer);
+                break;
+            }
+
+            Utils.swap(toSort, j, i);
+            if (animate)
+                buffer.swap = true;
+            moves.add(buffer);
+
+            i = j;
+        }
     }
 }
