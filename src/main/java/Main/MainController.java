@@ -67,7 +67,7 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new PancakeSort<>(), moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new OddEvenSort<>(), moves));
         sort.start();
 
         Thread.sleep(100);
@@ -85,7 +85,7 @@ public class MainController implements Initializable {
         gc.setFill(Color.BLACK);
         timeline2 = blackTimeLine(current) ;
         Timeline finalTimeline = timeline2;
-        timeline1.setOnFinished(e -> finalTimeline.play() );
+        timeline1.setOnFinished(e -> finalTimeline.play());
 
         timeline1.play();
 
