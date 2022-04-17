@@ -21,13 +21,13 @@ public class CombSort<T> extends SortAttributes<T> {
 
                 int cmp = comparator.compare(toSort.get(i), toSort.get(i + gap));
                 if (cmp > 0) {
-                    if(animate) buffer.swap = true ;
+                    if (animate) buffer.swap = true;
 
                     isSorted = false;
                     Utils.swap(toSort, i, i + gap);
                 }
 
-                moves.add(buffer) ;
+                moves.add(buffer);
             }
         }
     }
