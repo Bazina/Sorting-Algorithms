@@ -1,12 +1,16 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
+import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
 import java.util.List;
 
 public class InPlaceMergeSort<T> extends SortAttributes<T> {
+    private boolean animate;
+
     @Override
     public void sort() {
+        animate = moves.isEmpty();
         mergeSort(toSort, 0, toSort.size() - 1);
     }
 
@@ -22,16 +26,29 @@ public class InPlaceMergeSort<T> extends SortAttributes<T> {
         mergeArray(arrayList, low, high);
     }
 
+    //using Shell Sort
     private void mergeArray(List<T> arrayList, int low, int high) {
+        Move buffer = null;
+
         for (int gap = (high - low + 1) / 2; gap > 0; gap /= 2) {
 
             for (int i = low + gap; i < high + 1; i++) {
 
                 for (int j = i; j >= gap + low; j -= gap) {
+                    if (animate)
+                        buffer = new Move(j, j - gap, (Double) toSort.get(j), (Double) toSort.get(j - gap), false);
 
                     int cmp = comparator.compare(arrayList.get(j), arrayList.get(j - gap));
-                    if (cmp < 0) Utils.swap(arrayList, j, j - gap);
-                    else break;
+                    if (cmp < 0) {
+                        Utils.swap(arrayList, j, j - gap);
+                        if (animate)
+                            buffer.swap = true;
+
+                        moves.add(buffer);
+                    } else {
+                        moves.add(buffer);
+                        break;
+                    }
                 }
             }
         }
