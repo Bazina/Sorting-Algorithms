@@ -8,7 +8,6 @@ import java.util.List;
 public class ShellSort<T> implements SortStrategy<T> {
     @Override
     public void sort(List<T> arrayList, Comparator<T> comparator) {
-
         for (int gap = arrayList.size() / 2; gap > 0; gap /= 2) {
 
             for (int i = gap; i < arrayList.size(); i++) {
