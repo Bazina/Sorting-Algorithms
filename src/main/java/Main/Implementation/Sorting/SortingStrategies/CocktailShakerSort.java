@@ -44,7 +44,6 @@ public class CocktailShakerSort<T> extends SortAttributes<T> {
                     if (animate)
                         buffer.swap = true;
 
-                    isSorted = false;
                     Utils.swap(toSort, j - 1, j);
                 }
                 moves.add(buffer);

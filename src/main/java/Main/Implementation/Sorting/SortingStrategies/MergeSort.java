@@ -36,6 +36,7 @@ public class MergeSort<T> extends SortAttributes<T> {
         int j = 0, i = 0, k = 0;
 
         while (i < left.size() && j < right.size()) {
+
             if (comparator.compare(left.get(i), right.get(j)) < 0)
                 arrayList.set(k++, left.get(i++));
             else

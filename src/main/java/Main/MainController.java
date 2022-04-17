@@ -40,7 +40,7 @@ public class MainController implements Initializable {
 
         gc = theCanvas.getGraphicsContext2D();
         arrayList = new ArrayList<>();
-        for (int i = 0; i < 150; i++) {
+        for (int i = 0; i < 50; i++) {
             arrayList.add((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight());
         }
 
@@ -67,7 +67,7 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new GnomeSort<>(), moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new PancakeSort<>(), moves));
         sort.start();
 
         Thread.sleep(100);
