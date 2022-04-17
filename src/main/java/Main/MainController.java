@@ -3,8 +3,7 @@ package Main;
 
 import Main.Controller.Move;
 import Main.Implementation.Sorting.Sorting;
-import Main.Implementation.Sorting.SortingStrategies.BubbleSort;
-import Main.Implementation.Sorting.SortingStrategies.ShellSort;
+import Main.Implementation.Sorting.SortingStrategies.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -41,7 +40,7 @@ public class MainController implements Initializable {
 
         gc = theCanvas.getGraphicsContext2D();
         arrayList = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 150; i++) {
             arrayList.add((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight());
         }
 
@@ -68,7 +67,7 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new ShellSort<>(), moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new GnomeSort<>(), moves));
         sort.start();
 
         Thread.sleep(100);

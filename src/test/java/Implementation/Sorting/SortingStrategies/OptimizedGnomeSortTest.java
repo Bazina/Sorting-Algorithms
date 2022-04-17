@@ -1,13 +1,25 @@
-package Sorting.SortingStrategies;
+package Implementation.Sorting.SortingStrategies;
 
+import Main.Controller.Move;
+import Main.Implementation.Sorting.SortingStrategies.OptimizedGnomeSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
-class BinaryInsertionSortTest {
-    BinaryInsertionSort<Integer> binaryInsertionSort = new BinaryInsertionSort<>();
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class OptimizedGnomeSortTest {
+    OptimizedGnomeSort<Integer> OptimizedGnomeSort = new OptimizedGnomeSort<>();
+    Queue<Move> moves = new LinkedList<>() {
+        {
+            add(new Move(-10, -10, -10, -10, false));
+        }
+    };
 
     @Test
     void sortTest1() {
@@ -29,15 +41,16 @@ class BinaryInsertionSortTest {
                 add(77);
                 add(2);
                 add(50);
-                add(92) ;
-                add(10) ;
+                add(92);
+                add(10);
             }
         };
 
         String string = "[1, 2, 2, 3, 4, 8, 9, 10, 13, 23, 30, 33, 43, 50, 77, 87, 88, 92]";
 
-        this.binaryInsertionSort.sort(arrayList, Comparator.naturalOrder());
-        Assertions.assertEquals(string, arrayList.toString());
+        this.OptimizedGnomeSort.set(arrayList, moves, Comparator.naturalOrder());
+        this.OptimizedGnomeSort.run();
+        assertEquals(string, arrayList.toString());
     }
 
     @Test
@@ -50,7 +63,8 @@ class BinaryInsertionSortTest {
 
         String string = "[8]";
 
-        this.binaryInsertionSort.sort(arrayList, Comparator.reverseOrder());
+        this.OptimizedGnomeSort.set(arrayList, moves, Comparator.reverseOrder());
+        this.OptimizedGnomeSort.run();
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -65,7 +79,8 @@ class BinaryInsertionSortTest {
 
         String string = "[9, 8]";
 
-        this.binaryInsertionSort.sort(arrayList, Comparator.reverseOrder());
+        this.OptimizedGnomeSort.set(arrayList, moves, Comparator.reverseOrder());
+        this.OptimizedGnomeSort.run();
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -82,7 +97,8 @@ class BinaryInsertionSortTest {
 
         String string = "[3, 4, 5, 6]";
 
-        this.binaryInsertionSort.sort(arrayList, Comparator.naturalOrder());
+        this.OptimizedGnomeSort.set(arrayList, moves, Comparator.naturalOrder());
+        this.OptimizedGnomeSort.run();
         Assertions.assertEquals(string, arrayList.toString());
     }
 
@@ -104,7 +120,8 @@ class BinaryInsertionSortTest {
 
         String string = "[14, 10, 7, 6, 5, 4, 3, 2, 1]";
 
-        this.binaryInsertionSort.sort(arrayList, Comparator.reverseOrder());
+        this.OptimizedGnomeSort.set(arrayList, moves, Comparator.reverseOrder());
+        this.OptimizedGnomeSort.run();
         Assertions.assertEquals(string, arrayList.toString());
     }
 }

@@ -1,6 +1,7 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
 import Main.Controller.Move;
+import Main.Implementation.Sorting.SortStrategy;
 
 import java.util.Comparator;
 import java.util.List;
