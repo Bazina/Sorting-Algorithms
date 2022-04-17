@@ -14,7 +14,7 @@ public class BinaryInsertionSort<T> extends SortAttributes<T> {
     }
 
     private int binarySearch(List<T> arrayList, int end, T val) {
-        int low = 0, high = end, mid = 0;
+        int low = 0, high = end, mid;
         while (high > low) {
             mid = (high + low) / 2;
             int cmp = comparator.compare(val, arrayList.get(mid));
