@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Queue;
 
 public class PancakeSort<T> extends SortAttributes<T> {
+    private boolean animate ;
+
     @Override
     public void sort() {
-        boolean animate = moves.isEmpty();
+        animate = moves.isEmpty();
         Move buffer = null;
 
         for (int i = toSort.size() - 1; i >= 0; i--) {
@@ -29,8 +31,7 @@ public class PancakeSort<T> extends SortAttributes<T> {
         }
     }
 
-    private static <T> void flip(List<T> arrayList, int i , Queue<Move> moves , List<T> toSort) {
-        boolean animate = moves.isEmpty();
+    private void flip(List<T> arrayList, int i , Queue<Move> moves , List<T> toSort) {
         Move buffer = null;
 
         for (int j = 0; j <= i / 2; j++) {

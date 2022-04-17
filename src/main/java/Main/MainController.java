@@ -29,7 +29,7 @@ public class MainController implements Initializable {
     private List<Double> arrayList;
 
     private Queue<Move> moves;
-    private double delay = 0.0001 ;
+    private double delay = 0.001 ;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,7 +67,7 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new HeapSort<>(), moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new PancakeSort<>(), moves));
         sort.start();
 
         Thread.sleep(100);
