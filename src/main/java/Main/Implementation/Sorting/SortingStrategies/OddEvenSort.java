@@ -22,12 +22,12 @@ public class OddEvenSort<T> extends SortAttributes<T> {
                 int cmp = comparator.compare(toSort.get(i), toSort.get(i + 1));
                 if (cmp > 0) {
                     if (animate)
-                        buffer.swap = true ;
+                        buffer.swap = true;
 
                     isSorted = false;
                     Utils.swap(toSort, i, i + 1);
                 }
-                moves.add(buffer) ;
+                moves.add(buffer);
             }
 
             for (int i = 1; i < size - 1; i += 2) {
@@ -37,12 +37,12 @@ public class OddEvenSort<T> extends SortAttributes<T> {
                 int cmp = comparator.compare(toSort.get(i), toSort.get(i + 1));
                 if (cmp > 0) {
                     if (animate)
-                        buffer.swap = true ;
+                        buffer.swap = true;
 
                     isSorted = false;
                     Utils.swap(toSort, i, i + 1);
                 }
-                moves.add(buffer) ;
+                moves.add(buffer);
             }
         }
     }

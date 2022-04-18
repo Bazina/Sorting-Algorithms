@@ -6,11 +6,11 @@ import Main.Implementation.Sorting.Utils;
 import java.util.List;
 
 public class BinaryInsertionSort<T> extends SortAttributes<T> {
-    boolean animate ;
+    boolean animate;
 
     @Override
     public void sort() {
-        animate = moves.isEmpty() ;
+        animate = moves.isEmpty();
 
         for (int i = 1; i < toSort.size(); i++) {
             int pos = binarySearch(toSort, i, toSort.get(i));
@@ -19,7 +19,7 @@ public class BinaryInsertionSort<T> extends SortAttributes<T> {
     }
 
     private int binarySearch(List<T> arrayList, int end, T val) {
-        Move buffer = null ;
+        Move buffer = null;
 
         int low = 0, high = end, mid;
         while (high > low) {
@@ -40,12 +40,12 @@ public class BinaryInsertionSort<T> extends SortAttributes<T> {
     }
 
     private void letShift(List<T> arrayList, int shift, int end) {
-        Move buffer = null ;
+        Move buffer = null;
 
         for (int i = end; i > shift; i--) {
             if (animate)
-                buffer = new Move(i, i-1, (Double) toSort.get(i), (Double) toSort.get(i-1), true);
-            moves.add(buffer) ;
+                buffer = new Move(i, i - 1, (Double) toSort.get(i), (Double) toSort.get(i - 1), true);
+            moves.add(buffer);
 
             Utils.swap(arrayList, i, i - 1);
         }

@@ -29,7 +29,7 @@ public class MainController implements Initializable {
     private List<Double> arrayList;
 
     private Queue<Move> moves;
-    private double delay = 0.001 ;
+    private double delay = 0.001;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,9 +40,8 @@ public class MainController implements Initializable {
 
         gc = theCanvas.getGraphicsContext2D();
         arrayList = new ArrayList<>();
-        for (int i = 0; i < 150; i++) {
+        for (int i = 0; i < 50; i++)
             arrayList.add((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight());
-        }
 
         blockSize = theCanvas.getWidth() / arrayList.size();
         drawArray();
@@ -58,7 +57,7 @@ public class MainController implements Initializable {
 
     private void drawArray() {
         gc.setFill(Color.BLACK);
-        gc.setStroke(Color.WHITE);
+        gc.setStroke(Color.rgb(244, 244, 244));
 
         for (int i = 0; i < arrayList.size(); i++) {
             gc.fillRect(i * blockSize, 0, blockSize, arrayList.get(i));
@@ -67,23 +66,22 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new OddEvenSort<>(), moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new MergeSort<>(), moves));
         sort.start();
 
         Thread.sleep(100);
         startDrawSorting();
-
     }
 
     private void startDrawSorting() {
-        Timeline timeline1 ;
-        Timeline timeline2 ;
+        Timeline timeline1;
+        Timeline timeline2;
 
         Move current = moves.poll();
-        timeline1 = redTimeLine(current);
+        timeline1 = coloredTimeLine(current, Color.RED);
 
         gc.setFill(Color.BLACK);
-        timeline2 = blackTimeLine(current) ;
+        timeline2 = coloredTimeLine(current, Color.BLACK);
         Timeline finalTimeline = timeline2;
         timeline1.setOnFinished(e -> finalTimeline.play());
 
@@ -92,48 +90,63 @@ public class MainController implements Initializable {
         while (!moves.isEmpty()) {
             current = moves.poll();
 
-            timeline1 = redTimeLine(current);
+            timeline1 = coloredTimeLine(current, Color.RED);
             Timeline finalTimeline1 = timeline1;
-            timeline2.setOnFinished(e-> finalTimeline1.play());
+            timeline2.setOnFinished(e -> finalTimeline1.play());
 
-            timeline2 = blackTimeLine(current) ;
+            timeline2 = coloredTimeLine(current, Color.BLACK);
             Timeline finalTimeline2 = timeline2;
-            timeline1.setOnFinished(e-> finalTimeline2.play());
+            timeline1.setOnFinished(e -> finalTimeline2.play());
+        }
+        timeline2.setOnFinished(e -> end());
+    }
 
+    private void end() {
+        Timeline timeline1;
+        Timeline timeline2;
+
+        gc.setFill(Color.GREEN);
+        timeline1 = coloredTimeLine(new Move(0, 0, arrayList.get(0), 0, false, true), Color.GREEN);
+        timeline2 = coloredTimeLine(new Move(1, 0, arrayList.get(1), 0, false, true), Color.GREEN);
+        Timeline finalTimeline = timeline2;
+        timeline1.setOnFinished(e -> finalTimeline.play());
+        timeline1.play();
+
+        for (int i = 2; i < arrayList.size(); i++) {
+            timeline1 = coloredTimeLine(new Move(i, 0, arrayList.get(i), 0, false, true), Color.GREEN);
+            Timeline finalTimeline1 = timeline1;
+            timeline2.setOnFinished(e -> finalTimeline1.play());
+            timeline2 = timeline1;
         }
     }
 
-    private Timeline redTimeLine(Move current){
-        return new Timeline(
-                new KeyFrame(Duration.seconds(delay), e ->  gc.setFill(Color.RED)),
-                new KeyFrame(Duration.seconds(delay), e ->  gc.fillRect(current.i * blockSize, 0, blockSize, current.heightI)),
-                new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightI)),
-                new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.j * blockSize, 0, blockSize, current.heightJ)),
-                new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightJ))
-        );
-
-    }
-
-    private Timeline blackTimeLine(Move current){
-        if (current.swap) {
+    private Timeline coloredTimeLine(Move current, Color color) {
+        if (current.merge) {
             return new Timeline(
-                    new KeyFrame(Duration.seconds(delay), e ->   gc.setFill(Color.BLACK)),
-                    new KeyFrame(Duration.seconds(delay), e ->   gc.clearRect(current.i * blockSize, 0, blockSize, current.heightI)),
-                    new KeyFrame(Duration.seconds(delay), e ->   gc.clearRect(current.j * blockSize, 0, blockSize, current.heightJ)),
-                    new KeyFrame(Duration.seconds(delay), e ->  gc.fillRect(current.j * blockSize, 0, blockSize, current.heightI)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.setFill(color)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.i * blockSize, 0, blockSize, theCanvas.getHeight())),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.i * blockSize, 0, blockSize, current.heightI)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightI))
+            );
+        } else if (current.swap) {
+            return new Timeline(
+                    new KeyFrame(Duration.seconds(delay), e -> gc.setFill(color)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.i * blockSize, 0, blockSize, current.heightI)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.j * blockSize, 0, blockSize, current.heightJ)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.j * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.i * blockSize, 0, blockSize, current.heightJ)),
-                    new KeyFrame(Duration.seconds(delay), e ->  gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightJ))
+                    new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightJ))
             );
         } else {
             return new Timeline(
-                    new KeyFrame(Duration.seconds(delay), e ->   gc.setFill(Color.BLACK)),
-                    new KeyFrame(Duration.seconds(delay), e ->   gc.clearRect(current.i * blockSize, 0, blockSize, current.heightI)),
-                    new KeyFrame(Duration.seconds(delay), e ->   gc.clearRect(current.j * blockSize, 0, blockSize, current.heightJ)),
-                    new KeyFrame(Duration.seconds(delay), e ->  gc.fillRect(current.i * blockSize, 0, blockSize, current.heightI)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.setFill(color)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.i * blockSize, 0, blockSize, current.heightI)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.j * blockSize, 0, blockSize, current.heightJ)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.i * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.j * blockSize, 0, blockSize, current.heightJ)),
-                    new KeyFrame(Duration.seconds(delay), e ->  gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightJ))
+                    new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightJ))
             );
         }
     }

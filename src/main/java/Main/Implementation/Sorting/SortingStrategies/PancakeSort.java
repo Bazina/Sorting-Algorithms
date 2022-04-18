@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class PancakeSort<T> extends SortAttributes<T> {
-    private boolean animate ;
+    private boolean animate;
 
     @Override
     public void sort() {
@@ -22,16 +22,16 @@ public class PancakeSort<T> extends SortAttributes<T> {
 
                 int cmp = comparator.compare(toSort.get(large), toSort.get(j));
                 if (cmp < 0) large = j;
-                moves.add(buffer) ;
+                moves.add(buffer);
             }
             if (large == i) continue;
 
-            flip(toSort, large , moves , toSort);
-            flip(toSort, i , moves , toSort);
+            flip(toSort, large, moves, toSort);
+            flip(toSort, i, moves, toSort);
         }
     }
 
-    private void flip(List<T> arrayList, int i , Queue<Move> moves , List<T> toSort) {
+    private void flip(List<T> arrayList, int i, Queue<Move> moves, List<T> toSort) {
         Move buffer = null;
 
         for (int j = 0; j <= i / 2; j++) {
@@ -39,7 +39,7 @@ public class PancakeSort<T> extends SortAttributes<T> {
                 buffer = new Move(j, i - j, (Double) toSort.get(j), (Double) toSort.get(i - j), true);
 
             Utils.swap(arrayList, j, i - j);
-            moves.add(buffer) ;
+            moves.add(buffer);
         }
     }
 }

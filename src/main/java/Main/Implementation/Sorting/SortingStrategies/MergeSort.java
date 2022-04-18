@@ -1,52 +1,75 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
+import Main.Controller.Move;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MergeSort<T> extends SortAttributes<T> {
+    boolean animate;
+    private List<T> temp;
+
     @Override
     public void sort() {
-        sort(toSort);
+        animate = moves.isEmpty();
+        temp = new ArrayList<>(toSort);
+        sort(0, toSort.size() - 1);
     }
 
-    public void sort(List<T> toSort) {
-        if (toSort.size() <= 1)
-            return;
-
-        int middle = toSort.size() / 2;
-
-        List<T> left = new ArrayList<>(middle);
-        List<T> right = new ArrayList<>(toSort.size() - middle);
-
-        for (int i = 0; i < middle; i++) {
-            left.add(toSort.get(i));
+    private void sort(int low, int high) {
+        if (low < high) {
+            int middle = (low + high) / 2;
+            sort(low, middle);
+            sort(middle + 1, high);
+            merge(low, middle, high);
         }
-
-        for (int i = middle; i < toSort.size(); i++) {
-            right.add(toSort.get(i));
-        }
-
-        sort(left);
-        sort(right);
-
-        merge(toSort, left, right);
     }
 
-    private void merge(List<T> arrayList, List<T> left, List<T> right) {
-        int j = 0, i = 0, k = 0;
-
-        while (i < left.size() && j < right.size()) {
-
-            if (comparator.compare(left.get(i), right.get(j)) < 0)
-                arrayList.set(k++, left.get(i++));
-            else
-                arrayList.set(k++, right.get(j++));
+    private void merge(int low, int middle, int high) {
+        Move buffer;
+        for (int i = low; i <= high; i++) {
+            temp.set(i, toSort.get(i));
         }
 
-        while (i < left.size())
-            arrayList.set(k++, left.get(i++));
+        int i = low;
+        int j = middle + 1;
+        int k = low;
+        while (i <= middle && j <= high) {
+            if (comparator.compare(temp.get(i), temp.get(j)) < 0) {
+                if (animate) {
+                    buffer = new Move(i, j, (Double) temp.get(i), (Double) temp.get(j), false, false);
+                    moves.add(buffer);
+                }
+                toSort.set(k++, temp.get(i++));
+            } else {
+                if (animate) {
+                    buffer = new Move(i, j, (Double) temp.get(i), (Double) temp.get(j), false, false);
+                    moves.add(buffer);
+                }
+                toSort.set(k++, temp.get(j++));
+            }
+        }
 
-        while (j < right.size())
-            arrayList.set(k++, right.get(j++));
+        if (animate)
+            for (int l = low; l < k; l++) {
+                buffer = new Move(l, 0, (Double) toSort.get(l), 0, false, true);
+                moves.add(buffer);
+            }
+
+        while (i <= middle) {
+            if (animate) {
+                buffer = new Move(k, 0, (Double) temp.get(i), 0, false, true);
+                moves.add(buffer);
+            }
+            toSort.set(k++, temp.get(i++));
+        }
+
+        while (j <= high) {
+            if (animate) {
+                buffer = new Move(k, 0, (Double) temp.get(j), 0, false, true);
+                moves.add(buffer);
+            }
+            toSort.set(k++, temp.get(j++));
+        }
     }
 }
