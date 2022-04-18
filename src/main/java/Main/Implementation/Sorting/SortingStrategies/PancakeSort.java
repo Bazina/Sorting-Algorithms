@@ -18,7 +18,7 @@ public class PancakeSort<T> extends SortAttributes<T> {
             int large = i;
             for (int j = 0; j < i; j++) {
                 if (animate)
-                    buffer = new Move(j, large, (Double) toSort.get(j), (Double) toSort.get(large), false);
+                    buffer = new Move(j, large, (Integer) toSort.get(j), (Integer) toSort.get(large), false);
 
                 int cmp = comparator.compare(toSort.get(large), toSort.get(j));
                 if (cmp < 0) large = j;
@@ -36,7 +36,7 @@ public class PancakeSort<T> extends SortAttributes<T> {
 
         for (int j = 0; j <= i / 2; j++) {
             if (animate)
-                buffer = new Move(j, i - j, (Double) toSort.get(j), (Double) toSort.get(i - j), true);
+                buffer = new Move(j, i - j, (Integer) toSort.get(j), (Integer) toSort.get(i - j), true);
 
             Utils.swap(arrayList, j, i - j);
             moves.add(buffer);

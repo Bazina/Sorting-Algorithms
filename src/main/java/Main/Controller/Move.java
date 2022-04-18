@@ -3,25 +3,37 @@ package Main.Controller;
 public class Move {
     public int i;
     public int j;
-    public Double heightI;
-    public Double heightJ;
-    public boolean swap, merge;
+    public int heightI;
+    public int heightJ;
+    public boolean swap, singleCol, pivot;
 
-    public Move(int i, int j, double height1, double height2, boolean swap) {
+    public Move(int i, int j, int height1, int height2, boolean swap) {
         this.i = i;
         this.j = j;
         this.heightI = height1;
         this.heightJ = height2;
         this.swap = swap;
+        this.singleCol = false;
     }
 
-    public Move(int i, int j, double height1, double height2, boolean swap, boolean merge) {
+    public Move(int i, int j, int height1, int height2, boolean swap, boolean singleCol) {
         this.i = i;
         this.j = j;
         this.heightI = height1;
         this.heightJ = height2;
         this.swap = swap;
-        this.merge = merge;
+        this.singleCol = singleCol;
+        this.pivot = false;
+    }
+
+    public Move(int i, int j, int height1, int height2, boolean swap, boolean singleCol, boolean pivot) {
+        this.i = i;
+        this.j = j;
+        this.heightI = height1;
+        this.heightJ = height2;
+        this.swap = swap;
+        this.singleCol = singleCol;
+        this.pivot = pivot;
     }
 
     @Override
@@ -32,7 +44,8 @@ public class Move {
                ", heightI=" + heightI +
                ", heightJ=" + heightJ +
                ", swap=" + swap +
-               ", merge=" + merge +
+               ", singleCol=" + singleCol +
+               ", pivot=" + pivot +
                '}';
     }
 }

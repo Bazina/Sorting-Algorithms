@@ -17,7 +17,7 @@ public class CombSort<T> extends SortAttributes<T> {
 
             for (int i = 0; i + gap < toSort.size(); i++) {
                 if (animate)
-                    buffer = new Move(i, i + gap, (Double) toSort.get(i), (Double) toSort.get(i + gap), false);
+                    buffer = new Move(i, i + gap, (Integer) toSort.get(i), (Integer) toSort.get(i + gap), false);
 
                 int cmp = comparator.compare(toSort.get(i), toSort.get(i + gap));
                 if (cmp > 0) {

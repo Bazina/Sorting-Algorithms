@@ -17,7 +17,7 @@ public class ShellSort<T> extends SortAttributes<T> {
                 for (int j = i; j >= gap; j -= gap) {
 
                     if (animate)
-                        buffer = new Move(j, j - gap, (Double) toSort.get(j), (Double) toSort.get(j - gap), false);
+                        buffer = new Move(j, j - gap, (Integer) toSort.get(j), (Integer) toSort.get(j - gap), false);
 
                     int cmp = comparator.compare(toSort.get(j), toSort.get(j - gap));
                     if (cmp < 0) {

@@ -13,7 +13,7 @@ public class GnomeSort<T> extends SortAttributes<T> {
         int pos = 1;
         while (pos != toSort.size()) {
             if (animate)
-                buffer = new Move(pos, pos - 1, (Double) toSort.get(pos), (Double) toSort.get(pos - 1), false);
+                buffer = new Move(pos, pos - 1, (Integer) toSort.get(pos), (Integer) toSort.get(pos - 1), false);
 
             int cmp = comparator.compare(toSort.get(pos), toSort.get(pos - 1));
             if (cmp < 0) {

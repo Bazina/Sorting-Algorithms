@@ -1,32 +1,43 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
+import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
-import java.util.List;
 
 public class QuickSort<T> extends SortAttributes<T> {
+    boolean animate;
     @Override
     public void sort() {
-        sort(toSort, 0, toSort.size() - 1);
+        animate = moves.isEmpty();
+        sort(0, toSort.size() - 1);
     }
 
-    private void sort(List<T> arrayList, int start, int end) {
+    private void sort(int start, int end) {
         if (start >= end)
             return;
 
-        int boundary = partitioning(arrayList, start, end);
+        int boundary = partitioning(start, end);
 
-        sort(arrayList, start, boundary - 1);
-        sort(arrayList, boundary + 1, end);
+        sort(start, boundary - 1);
+        sort(boundary + 1, end);
     }
 
-    private int partitioning(List<T> arrayList, int start, int end) {
+    private int partitioning(int start, int end) {
         int boundary = start - 1;
-        T pivot = arrayList.get(end);
+        T pivot = toSort.get(end);
+        if (animate)
+            moves.add(new Move(end, 0, (Integer) pivot, 0, false, true, true));
 
         for (int i = start; i <= end; i++) {
-            if (comparator.compare(arrayList.get(i), pivot) <= 0)
-                Utils.swap(arrayList, i, ++boundary);
+            if (animate)
+                moves.add(new Move(i, end, (Integer) toSort.get(i), (Integer) pivot, false));
+
+            if (comparator.compare(toSort.get(i), pivot) <= 0) {
+                if (animate)
+                    moves.add(new Move(i, boundary + 1, (Integer) toSort.get(i), (Integer) toSort.get(boundary + 1), true));
+
+                Utils.swap(toSort, i, ++boundary);
+            }
         }
 
         return boundary;

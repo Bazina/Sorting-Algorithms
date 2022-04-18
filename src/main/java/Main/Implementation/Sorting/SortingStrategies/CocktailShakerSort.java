@@ -18,7 +18,7 @@ public class CocktailShakerSort<T> extends SortAttributes<T> {
             isSorted = true;
             for (int j = first; j < last - 1; j++) {
                 if (animate)
-                    buffer = new Move(j, j + 1, (Double) toSort.get(j), (Double) toSort.get(j + 1), false);
+                    buffer = new Move(j, j + 1, (Integer) toSort.get(j), (Integer) toSort.get(j + 1), false);
 
                 int cmp = comparator.compare(toSort.get(j), toSort.get(j + 1));
                 if (cmp > 0) {
@@ -37,7 +37,7 @@ public class CocktailShakerSort<T> extends SortAttributes<T> {
 
             for (int j = last - 1; j > first; j--) {
                 if (animate)
-                    buffer = new Move(j - 1, j, (Double) toSort.get(j - 1), (Double) toSort.get(j), false);
+                    buffer = new Move(j - 1, j, (Integer) toSort.get(j - 1), (Integer) toSort.get(j), false);
 
                 int cmp = comparator.compare(toSort.get(j - 1), toSort.get(j));
                 if (cmp > 0) {

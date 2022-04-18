@@ -27,7 +27,7 @@ public class BinaryInsertionSort<T> extends SortAttributes<T> {
             int cmp = comparator.compare(val, arrayList.get(mid));
 
             if (animate)
-                buffer = new Move(mid, end, (Double) toSort.get(mid), (Double) toSort.get(end), false);
+                buffer = new Move(mid, end, (Integer) toSort.get(mid), (Integer) toSort.get(end), false);
             moves.add(buffer);
 
             if (cmp > 0) {
@@ -44,7 +44,7 @@ public class BinaryInsertionSort<T> extends SortAttributes<T> {
 
         for (int i = end; i > shift; i--) {
             if (animate)
-                buffer = new Move(i, i - 1, (Double) toSort.get(i), (Double) toSort.get(i - 1), true);
+                buffer = new Move(i, i - 1, (Integer) toSort.get(i), (Integer) toSort.get(i - 1), true);
             moves.add(buffer);
 
             Utils.swap(arrayList, i, i - 1);

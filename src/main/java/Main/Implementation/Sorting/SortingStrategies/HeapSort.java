@@ -18,7 +18,7 @@ public class HeapSort<T extends Comparable<T>> extends SortAttributes<T> {
 
         for (int i = size - 1; i > 0; i--) {
             if (animate)
-                buffer = new Move(0, i, (Double) toSort.get(0), (Double) toSort.get(i), true);
+                buffer = new Move(0, i, (Integer) toSort.get(0), (Integer) toSort.get(i), true);
             Utils.swap(toSort, 0, i);
             moves.add(buffer);
 
@@ -36,7 +36,7 @@ public class HeapSort<T extends Comparable<T>> extends SortAttributes<T> {
                 int cmp = comparator.compare(toSort.get(j), toSort.get(2 * i + 2));
 
                 if (animate)
-                    buffer = new Move(j, 2 * i + 2, (Double) toSort.get(j), (Double) toSort.get(2 * i + 2), false);
+                    buffer = new Move(j, 2 * i + 2, (Integer) toSort.get(j), (Integer) toSort.get(2 * i + 2), false);
                 moves.add(buffer);
 
                 if (cmp < 0)
@@ -45,7 +45,7 @@ public class HeapSort<T extends Comparable<T>> extends SortAttributes<T> {
 
             int cmp = comparator.compare(toSort.get(j), toSort.get(i));
             if (animate)
-                buffer = new Move(j, i, (Double) toSort.get(j), (Double) toSort.get(i), false);
+                buffer = new Move(j, i, (Integer) toSort.get(j), (Integer) toSort.get(i), false);
 
 
             if (cmp <= 0) {
@@ -55,7 +55,8 @@ public class HeapSort<T extends Comparable<T>> extends SortAttributes<T> {
 
             Utils.swap(toSort, j, i);
             if (animate)
-                buffer.swap = true;
+                if (buffer != null)
+                    buffer.swap = true;
             moves.add(buffer);
 
             i = j;

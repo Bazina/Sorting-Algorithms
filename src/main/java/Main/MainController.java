@@ -26,7 +26,7 @@ public class MainController implements Initializable {
     private double blockSize;
 
     private GraphicsContext gc;
-    private List<Double> arrayList;
+    private List<Integer> arrayList;
 
     private Queue<Move> moves;
     private double delay = 0.001;
@@ -40,8 +40,8 @@ public class MainController implements Initializable {
 
         gc = theCanvas.getGraphicsContext2D();
         arrayList = new ArrayList<>();
-        for (int i = 0; i < 50; i++)
-            arrayList.add((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight());
+        for (int i = 0; i < 70; i++)
+            arrayList.add((int) ((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight()));
 
         blockSize = theCanvas.getWidth() / arrayList.size();
         drawArray();
@@ -66,7 +66,7 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new MergeSort<>(), moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new InPlaceMergeSort<>(), moves));
         sort.start();
 
         Thread.sleep(100);
@@ -77,8 +77,11 @@ public class MainController implements Initializable {
         Timeline timeline1;
         Timeline timeline2;
 
+        if (moves.isEmpty()) return;
+
         Move current = moves.poll();
-        timeline1 = coloredTimeLine(current, Color.RED);
+        if (current.pivot) timeline1 = coloredTimeLine(current, Color.GOLD);
+        else timeline1 = coloredTimeLine(current, Color.RED);
 
         gc.setFill(Color.BLACK);
         timeline2 = coloredTimeLine(current, Color.BLACK);
@@ -90,7 +93,9 @@ public class MainController implements Initializable {
         while (!moves.isEmpty()) {
             current = moves.poll();
 
-            timeline1 = coloredTimeLine(current, Color.RED);
+            if (current.pivot) timeline1 = coloredTimeLine(current, Color.GOLD);
+            else timeline1 = coloredTimeLine(current, Color.RED);
+
             Timeline finalTimeline1 = timeline1;
             timeline2.setOnFinished(e -> finalTimeline1.play());
 
@@ -121,7 +126,7 @@ public class MainController implements Initializable {
     }
 
     private Timeline coloredTimeLine(Move current, Color color) {
-        if (current.merge) {
+        if (current.singleCol) {
             return new Timeline(
                     new KeyFrame(Duration.seconds(delay), e -> gc.setFill(color)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.i * blockSize, 0, blockSize, theCanvas.getHeight())),

@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Queue;
 
 public class Sorting implements Runnable {
-    List<Double> toSort;
-    Comparator<Double> comparator;
-    SortAttributes<Double> sort;
+    List<Integer> toSort;
+    Comparator<Integer> comparator;
+    SortAttributes<Integer> sort;
     Queue<Move> moves;
 
-    public Sorting(List<Double> toSort, Comparator<Double> comparator,
-                   SortAttributes<Double> sort, Queue<Move> moves) {
+    public Sorting(List<Integer> toSort, Comparator<Integer> comparator,
+                   SortAttributes<Integer> sort, Queue<Move> moves) {
         this.toSort = toSort;
         this.comparator = comparator;
         this.sort = sort;

@@ -36,13 +36,14 @@ public class InPlaceMergeSort<T> extends SortAttributes<T> {
 
                 for (int j = i; j >= gap + low; j -= gap) {
                     if (animate)
-                        buffer = new Move(j, j - gap, (Double) toSort.get(j), (Double) toSort.get(j - gap), false);
+                        buffer = new Move(j, j - gap, (Integer) toSort.get(j), (Integer) toSort.get(j - gap), false);
 
                     int cmp = comparator.compare(arrayList.get(j), arrayList.get(j - gap));
                     if (cmp < 0) {
                         Utils.swap(arrayList, j, j - gap);
                         if (animate)
-                            buffer.swap = true;
+                            if (buffer != null)
+                                buffer.swap = true;
 
                         moves.add(buffer);
                     } else {

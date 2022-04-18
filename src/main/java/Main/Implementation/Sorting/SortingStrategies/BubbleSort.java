@@ -16,7 +16,7 @@ public class BubbleSort<T> extends SortAttributes<T> {
 
                 int cmp = comparator.compare(toSort.get(j - 1), toSort.get(j));
                 if (animate)
-                    buffer = new Move(j - 1, j, (Double) toSort.get(j - 1), (Double) toSort.get(j), false);
+                    buffer = new Move(j - 1, j, (Integer) toSort.get(j - 1), (Integer) toSort.get(j), false);
 
                 if (cmp > 0) {
                     if (animate)

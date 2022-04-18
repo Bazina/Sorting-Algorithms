@@ -37,13 +37,13 @@ public class MergeSort<T> extends SortAttributes<T> {
         while (i <= middle && j <= high) {
             if (comparator.compare(temp.get(i), temp.get(j)) < 0) {
                 if (animate) {
-                    buffer = new Move(i, j, (Double) temp.get(i), (Double) temp.get(j), false, false);
+                    buffer = new Move(i, j, (Integer) temp.get(i), (Integer) temp.get(j), false, false);
                     moves.add(buffer);
                 }
                 toSort.set(k++, temp.get(i++));
             } else {
                 if (animate) {
-                    buffer = new Move(i, j, (Double) temp.get(i), (Double) temp.get(j), false, false);
+                    buffer = new Move(i, j, (Integer) temp.get(i), (Integer) temp.get(j), false, false);
                     moves.add(buffer);
                 }
                 toSort.set(k++, temp.get(j++));
@@ -52,13 +52,13 @@ public class MergeSort<T> extends SortAttributes<T> {
 
         if (animate)
             for (int l = low; l < k; l++) {
-                buffer = new Move(l, 0, (Double) toSort.get(l), 0, false, true);
+                buffer = new Move(l, 0, (Integer) toSort.get(l), 0, false, true);
                 moves.add(buffer);
             }
 
         while (i <= middle) {
             if (animate) {
-                buffer = new Move(k, 0, (Double) temp.get(i), 0, false, true);
+                buffer = new Move(k, 0, (Integer) temp.get(i), 0, false, true);
                 moves.add(buffer);
             }
             toSort.set(k++, temp.get(i++));
@@ -66,7 +66,7 @@ public class MergeSort<T> extends SortAttributes<T> {
 
         while (j <= high) {
             if (animate) {
-                buffer = new Move(k, 0, (Double) temp.get(j), 0, false, true);
+                buffer = new Move(k, 0, (Integer) temp.get(j), 0, false, true);
                 moves.add(buffer);
             }
             toSort.set(k++, temp.get(j++));

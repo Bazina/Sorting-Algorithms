@@ -17,7 +17,7 @@ public class OddEvenSort<T> extends SortAttributes<T> {
             isSorted = true;
             for (int i = 0; i < size - 1; i += 2) {
                 if (animate)
-                    buffer = new Move(i, i + 1, (Double) toSort.get(i), (Double) toSort.get(i + 1), false);
+                    buffer = new Move(i, i + 1, (Integer) toSort.get(i), (Integer) toSort.get(i + 1), false);
 
                 int cmp = comparator.compare(toSort.get(i), toSort.get(i + 1));
                 if (cmp > 0) {
@@ -32,7 +32,7 @@ public class OddEvenSort<T> extends SortAttributes<T> {
 
             for (int i = 1; i < size - 1; i += 2) {
                 if (animate)
-                    buffer = new Move(i, i + 1, (Double) toSort.get(i), (Double) toSort.get(i + 1), false);
+                    buffer = new Move(i, i + 1, (Integer) toSort.get(i), (Integer) toSort.get(i + 1), false);
 
                 int cmp = comparator.compare(toSort.get(i), toSort.get(i + 1));
                 if (cmp > 0) {
