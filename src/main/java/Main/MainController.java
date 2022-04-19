@@ -15,7 +15,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.*;
 
 public class MainController implements Initializable {
@@ -32,42 +35,18 @@ public class MainController implements Initializable {
 
     private Queue<Move> moves;
 
-    private SortAttributes<Integer> sortingStrategy;
+    private Object sortingStrategy;
     private double delay = 0.0001;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         moves = new LinkedList<>();
-        SortComboBox.getItems().addAll("Binary Insertion Sort", "Bitonic Sort", "Bogo Sort", "Bubble Sort",
-                "Cocktail Shaker Sort", "Comb Sort", "Counting Sort", "Double Selection Sort", "Gnome Sort",
+        SortComboBox.getItems().addAll("BinaryInsertionSort", "BitonicSort", "BogoSort", "BubbleSort",
+                "CocktailShaker Sort", "Comb Sort", "Counting Sort", "Double Selection Sort", "Gnome Sort",
                 "Heap Sort", "In Place Merge Sort", "Insertion Sort", "Merge Sort", "Odd Even Sort",
                 "Optimized Bubble Sort", "Pancake Sort", "Quick Sort", "Selection Sort", "Shell Sort", "Stooge Sort");
 
         SortComboBox.setVisibleRowCount(3);
-        SortComboBox.setOnAction(e -> {
-            switch (SortComboBox.getValue()) {
-                case "Binary Insertion Sort" -> sortingStrategy = new BinaryInsertionSort<>();
-                case "Bitonic Sort" -> sortingStrategy = new BitonicSort<>();
-                case "Bogo Sort" -> sortingStrategy = new BogoSort<>();
-                case "Bubble Sort" -> sortingStrategy = new BubbleSort<>();
-                case "Cocktail Shaker Sort" -> sortingStrategy = new CocktailShakerSort<>();
-                case "Comb Sort" -> sortingStrategy = new CombSort<>();
-                case "Counting Sort" -> sortingStrategy = new CountingSort();
-                case "Double Selection Sort" -> sortingStrategy = new DoubleSelectionSort<>();
-                case "Gnome Sort" -> sortingStrategy = new GnomeSort<>();
-                case "Heap Sort" -> sortingStrategy = new HeapSort<>();
-                case "In Place Merge Sort" -> sortingStrategy = new InPlaceMergeSort<>();
-                case "Insertion Sort" -> sortingStrategy = new InsertionSort<>();
-                case "Merge Sort" -> sortingStrategy = new MergeSort<>();
-                case "Odd Even Sort" -> sortingStrategy = new OddEvenSort<>();
-                case "Optimized Bubble Sort" -> sortingStrategy = new OptimizedBubbleSort<>();
-                case "Pancake Sort" -> sortingStrategy = new PancakeSort<>();
-                case "Quick Sort" -> sortingStrategy = new QuickSort<>();
-                case "Selection Sort" -> sortingStrategy = new SelectionSort<>();
-                case "Shell Sort" -> sortingStrategy = new ShellSort<>();
-                case "Stooge Sort" -> sortingStrategy = new StoogeSort<>();
-            }
-        });
 
         Random rd = new Random();
         theCanvas.setScaleY(-1);
@@ -100,7 +79,19 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), sortingStrategy, moves));
+        String classname = SortComboBox.getValue();
+
+        try {
+            sortingStrategy =
+                    new URLClassLoader(new URL[]{new URL("file://bin")})
+                            .loadClass("Main.Implementation.Sorting.SortingStrategies." + classname).getDeclaredConstructor().newInstance();
+
+        } catch ( InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), (SortAttributes<Integer>) sortingStrategy, moves));
         sort.start();
 
         Thread.sleep(100);
