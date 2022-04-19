@@ -1,5 +1,7 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
+import Main.Controller.Move;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,14 +19,14 @@ public class BucketSort<T> extends SortAttributes<T> {
         if (comparator == Comparator.reverseOrder()) {
             List<List<T>> buckets = createBuckets(toSort, bucketsNum);
             for (int j = bucketsNum - 1; j >= 0; j--) {
-                MergeSort.set(buckets.get(j), null, comparator);
+                MergeSort.set(buckets.get(j), moves, comparator);
                 MergeSort.run();
                 for (T item : buckets.get(j))
                     toSort.set(i++, item);
             }
         } else
             for (List<T> bucket : createBuckets(toSort, bucketsNum)) {
-                MergeSort.set(bucket, null, comparator);
+                MergeSort.set(bucket, moves, comparator);
                 MergeSort.run();
                 for (T item : bucket)
                     toSort.set(i++, item);

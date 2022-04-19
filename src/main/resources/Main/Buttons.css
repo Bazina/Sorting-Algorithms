@@ -1,0 +1,5 @@
+.button {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 1, 1, 5, 5);
+    -fx-background-color: #BD0F09;
+    -fx-text-fill: #f4f4f4;
+}
