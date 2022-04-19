@@ -3,3 +3,8 @@
     -fx-background-color: #BD0F09;
     -fx-text-fill: #f4f4f4;
 }
+
+.button:hover {
+    -fx-background-color: #f4f4f4;
+    -fx-text-fill: #BD0F09;
+}
