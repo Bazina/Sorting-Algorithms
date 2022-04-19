@@ -29,7 +29,7 @@ public class MainController implements Initializable {
     private List<Integer> arrayList;
 
     private Queue<Move> moves;
-    private double delay = 0.001;
+    private double delay = 0.0001;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,7 +40,7 @@ public class MainController implements Initializable {
 
         gc = theCanvas.getGraphicsContext2D();
         arrayList = new ArrayList<>();
-        for (int i = 0; i < 70; i++)
+        for (int i = 0; i < 30; i++)
             arrayList.add((int) ((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight()));
 
         blockSize = theCanvas.getWidth() / arrayList.size();
@@ -66,7 +66,7 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new InPlaceMergeSort<>(), moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), new StoogeSort<>(), moves));
         sort.start();
 
         Thread.sleep(100);

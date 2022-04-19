@@ -1,5 +1,6 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
+import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 public class StoogeSort<T> extends SortAttributes<T> {
     @Override
     public void sort() {
+        boolean animate = moves.isEmpty();
+
         if (toSort.size() == 1) return;
         stoogeSort(toSort, 0, toSort.size() - 1);
     }
@@ -15,10 +18,15 @@ public class StoogeSort<T> extends SortAttributes<T> {
         int t;
         int cmp = comparator.compare(array.get(j), array.get(i));
 
+        Move buffer = new Move(i, j, (Integer) toSort.get(i), (Integer) toSort.get(j), false);
+
         // If first element is smaller
         // than last, swap them
-        if (cmp < 0)
+        if (cmp < 0) {
+            buffer.swap = true;
             Utils.swap(array, i, j);
+        }
+        moves.add(buffer);
 
         // If there are more than 2 elements
         if ((j - i + 1) >= 3) {
