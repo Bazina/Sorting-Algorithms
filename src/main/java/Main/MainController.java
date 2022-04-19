@@ -42,11 +42,11 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         moves = new LinkedList<>();
         SortComboBox.getItems().addAll("BinaryInsertionSort", "BitonicSort", "BogoSort", "BubbleSort",
-                "CocktailShaker Sort", "Comb Sort", "Counting Sort", "Double Selection Sort", "Gnome Sort",
-                "Heap Sort", "In Place Merge Sort", "Insertion Sort", "Merge Sort", "Odd Even Sort",
-                "Optimized Bubble Sort", "Pancake Sort", "Quick Sort", "Selection Sort", "Shell Sort", "Stooge Sort");
+                "CocktailShakerSort", "CombSort", "CountingSort", "DoubleSelectionSort", "GnomeSort",
+                "HeapSort", "InPlaceMergeSort", "InsertionSort", "MergeSort", "OddEvenSort",
+                "OptimizedBubbleSort", "PancakeSort", "QuickSort", "SelectionSort", "ShellSort", "StoogeSort");
 
-        SortComboBox.setVisibleRowCount(3);
+        SortComboBox.setVisibleRowCount(7);
 
         Random rd = new Random();
         theCanvas.setScaleY(-1);
@@ -79,14 +79,15 @@ public class MainController implements Initializable {
     }
 
     private void startSorting() throws InterruptedException {
-        String classname = SortComboBox.getValue();
+        String className = SortComboBox.getValue();
 
         try {
-            sortingStrategy =
-                    new URLClassLoader(new URL[]{new URL("file://bin")})
-                            .loadClass("Main.Implementation.Sorting.SortingStrategies." + classname).getDeclaredConstructor().newInstance();
+            sortingStrategy = new URLClassLoader(new URL[]{new URL("file://bin")})
+                    .loadClass("Main.Implementation.Sorting.SortingStrategies." + className)
+                    .getDeclaredConstructor().newInstance();
 
-        } catch ( InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        } catch (InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException |
+                 InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
 

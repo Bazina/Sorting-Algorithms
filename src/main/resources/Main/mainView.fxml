@@ -14,6 +14,6 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="SortComboBox" focusColor="GOLD" layoutX="715.0" layoutY="24.0" prefHeight="45.0" prefWidth="251.0" promptText="Select Sort Algorithm" unFocusColor="#bd0f09" />
+      <JFXComboBox fx:id="SortComboBox" focusColor="GOLD" layoutX="576.0" layoutY="24.0" prefHeight="45.0" prefWidth="390.0" promptText="Select Sort Algorithm" unFocusColor="#bd0f09" />
    </children>
 </AnchorPane>

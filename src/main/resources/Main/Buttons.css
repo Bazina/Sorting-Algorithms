@@ -8,3 +8,7 @@
     -fx-background-color: #f4f4f4;
     -fx-text-fill: #BD0F09;
 }
+
+.combo-box-popup .list-view .list-cell {
+    -fx-font-size : 138px;
+}
