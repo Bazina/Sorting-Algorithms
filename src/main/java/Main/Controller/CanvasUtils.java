@@ -102,6 +102,7 @@ public class CanvasUtils {
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.i * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightI))
             );
+
         } else if (current.swap) {
             return new Timeline(
                     new KeyFrame(Duration.seconds(delay), e -> gc.setFill(color)),

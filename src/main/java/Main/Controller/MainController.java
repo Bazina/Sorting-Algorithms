@@ -2,8 +2,8 @@ package Main.Controller;
 
 
 import Main.Implementation.Sorting.Sorting;
-import Main.Implementation.Sorting.SortingStrategies.MergeSort;
 import Main.Implementation.Sorting.SortingStrategies.ISorting;
+import Main.Implementation.Sorting.SortingStrategies.MergeSort;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,12 +58,27 @@ public class MainController implements Initializable {
             sortingStrategy = new MergeSort<>();
             SortComboBox.setValue("MergeSort");
         }
-
         canvasUtils.clear();
+
+        String className = SortComboBox.getValue();
+        try {
+            sortingStrategy = new URLClassLoader(new URL[]{new URL("file://bin")})
+                    .loadClass("Main.Implementation.Sorting.SortingStrategies." + className)
+                    .getDeclaredConstructor().newInstance();
+
+        } catch (InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException |
+                InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         int size = 50;
         if (!dataSize.getText().equals("")) size = Integer.parseInt(dataSize.getText());
         canvasUtils.setStrokeExist(size <= 200);
+
+        if (className.equals("BitonicSort")) {
+            size = nextPowerTwo(size);
+            dataSize.setText(size + "");
+        }
 
         canvasUtils.setDelay((canvasUtils.getDelay()) / Double.parseDouble(Speed.getText()));
         if (canvasUtils.getDelay() < 0.0001) canvasUtils.setDelay(0.0001);
@@ -77,16 +92,6 @@ public class MainController implements Initializable {
         canvasUtils.setData(arrayList);
         canvasUtils.drawArray();
 
-        String className = SortComboBox.getValue();
-        try {
-            sortingStrategy = new URLClassLoader(new URL[]{new URL("file://bin")})
-                    .loadClass("Main.Implementation.Sorting.SortingStrategies." + className)
-                    .getDeclaredConstructor().newInstance();
-
-        } catch (InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException |
-                InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
 
         Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), (ISorting<Integer>) sortingStrategy, moves));
         sort.start();
@@ -120,5 +125,12 @@ public class MainController implements Initializable {
         SortComboBox.setVisibleRowCount((list.size() != 0) ? Math.min(list.size(), 7) : 7);
 
         SortComboBox.show();
+    }
+
+    private int nextPowerTwo(int size) {
+        int buffer = 1;
+        while (buffer * 2 < size) buffer *= 2;
+        System.out.println(buffer);
+        return buffer;
     }
 }
