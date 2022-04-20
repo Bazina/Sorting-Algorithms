@@ -1,0 +1,6 @@
+.TextBox {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 1, 1, 2, 2);
+    -fx-border-color: #BD0F09;
+    -fx-border-radius: 5;
+    -fx-font-size: 14px;
+}

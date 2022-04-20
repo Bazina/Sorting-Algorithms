@@ -3,6 +3,7 @@ package Main;
 
 import Main.Controller.Move;
 import Main.Implementation.Sorting.Sorting;
+import Main.Implementation.Sorting.SortingStrategies.MergeSort;
 import Main.Implementation.Sorting.SortingStrategies.SortAttributes;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -28,6 +29,8 @@ public class MainController implements Initializable {
     private ComboBox<String> SortComboBox;
     @FXML
     private TextField dataSize;
+    @FXML
+    private TextField Delay;
 
     private double blockSize;
 
@@ -37,8 +40,8 @@ public class MainController implements Initializable {
     private Queue<Move> moves;
 
     private Object sortingStrategy;
-    private double delay = 0.0001;
-    private boolean strokeExist = true ;
+    private double delay = 0.01;
+    private boolean strokeExist = true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,6 +50,8 @@ public class MainController implements Initializable {
                 "CocktailShakerSort", "CombSort", "CountingSort", "DoubleSelectionSort", "GnomeSort",
                 "HeapSort", "InPlaceMergeSort", "InsertionSort", "MergeSort", "OddEvenSort",
                 "OptimizedBubbleSort", "PancakeSort", "QuickSort", "SelectionSort", "ShellSort", "StoogeSort");
+
+        Delay.setText("0.01");
 
         SortComboBox.setVisibleRowCount(7);
         theCanvas.setScaleY(-1);
@@ -57,7 +62,7 @@ public class MainController implements Initializable {
     private void drawArray() {
         gc.setFill(Color.BLACK);
 
-        if(strokeExist)gc.setStroke(Color.rgb(244, 244, 244));
+        if (strokeExist) gc.setStroke(Color.rgb(244, 244, 244));
         else gc.setStroke(Color.BLACK);
 
         for (int i = 0; i < arrayList.size(); i++) {
@@ -68,11 +73,18 @@ public class MainController implements Initializable {
 
     @FXML
     private void startSorting() throws InterruptedException {
+        if (sortingStrategy == null) {
+            sortingStrategy = new MergeSort<>();
+            SortComboBox.setValue("MergeSort");
+        }
+
         gc.clearRect(0, 0, theCanvas.getWidth(), theCanvas.getHeight());
 
         int size = 50;
 
-        if (!dataSize.getText().equals(""))  size = Integer.parseInt(dataSize.getText());
+        if (!dataSize.getText().equals("")) size = Integer.parseInt(dataSize.getText());
+
+        delay = Double.parseDouble(Delay.getText());
 
         strokeExist = size <= 200;
 
@@ -93,7 +105,7 @@ public class MainController implements Initializable {
                     .getDeclaredConstructor().newInstance();
 
         } catch (InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException |
-                InvocationTargetException | IllegalAccessException e) {
+                 InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
@@ -139,7 +151,7 @@ public class MainController implements Initializable {
     }
 
     private void end() {
-        if(strokeExist)gc.setStroke(Color.rgb(244, 244, 244));
+        if (strokeExist) gc.setStroke(Color.rgb(244, 244, 244));
         else gc.setStroke(Color.GREEN);
 
         Timeline timeline1;
