@@ -30,7 +30,7 @@ public class MainController implements Initializable {
     @FXML
     private TextField dataSize;
     @FXML
-    private TextField Delay;
+    private TextField Speed;
 
     private double blockSize;
 
@@ -51,7 +51,7 @@ public class MainController implements Initializable {
                 "HeapSort", "InPlaceMergeSort", "InsertionSort", "MergeSort", "OddEvenSort",
                 "OptimizedBubbleSort", "PancakeSort", "QuickSort", "SelectionSort", "ShellSort", "StoogeSort");
 
-        Delay.setText("0.01");
+        Speed.setText("1");
 
         SortComboBox.setVisibleRowCount(7);
         theCanvas.setScaleY(-1);
@@ -84,7 +84,7 @@ public class MainController implements Initializable {
 
         if (!dataSize.getText().equals("")) size = Integer.parseInt(dataSize.getText());
 
-        delay = Double.parseDouble(Delay.getText());
+        delay = delay / Double.parseDouble(Speed.getText());
         if (delay < 0.0001) delay = 0.0001;
 
         strokeExist = size <= 200;

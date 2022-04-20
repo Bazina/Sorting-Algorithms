@@ -46,8 +46,8 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="Delay" layoutX="314.0" layoutY="27.0" prefHeight="45.0" prefWidth="112.0" promptText="&gt;= 0.0001 sec" styleClass="TextBox" stylesheets="@TextBox.css" />
-      <Text layoutX="246.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay" wrappingWidth="67.849609375">
+      <TextField fx:id="Speed" layoutX="323.0" layoutY="27.0" prefHeight="45.0" prefWidth="112.0" promptText="e.g. 1, 2, 0.5" styleClass="TextBox" stylesheets="@TextBox.css" />
+      <Text layoutX="246.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed" wrappingWidth="67.849609375">
          <font>
             <Font name="Segoe UI" size="24.0" />
          </font>
