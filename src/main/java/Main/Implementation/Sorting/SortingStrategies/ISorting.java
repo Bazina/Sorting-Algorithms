@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Queue;
 
-public abstract class SortAttributes<T> implements SortStrategy<T>, Runnable {
+public abstract class ISorting<T> implements SortStrategy, Runnable {
     List<T> toSort;
     Queue<Move> moves;
     Comparator<T> comparator;

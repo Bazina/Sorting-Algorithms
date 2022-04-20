@@ -5,7 +5,7 @@ import Main.Implementation.Sorting.Utils;
 
 import java.util.List;
 
-public class InPlaceMergeSort<T> extends SortAttributes<T> {
+public class InPlaceMergeSort<T> extends ISorting<T> {
     private boolean animate;
 
     @Override

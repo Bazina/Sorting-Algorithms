@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class CountingSort extends SortAttributes<Integer> {
+public class CountingSort extends ISorting<Integer> {
     @Override
     public void sort() {
         boolean animate = moves.isEmpty();

@@ -4,7 +4,7 @@ import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
 
-public class OptimizedBubbleSort<T> extends SortAttributes<T> {
+public class OptimizedBubbleSort<T> extends ISorting<T> {
     @Override
     public void sort() {
         int num;

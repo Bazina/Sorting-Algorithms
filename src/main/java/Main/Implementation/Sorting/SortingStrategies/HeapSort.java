@@ -3,7 +3,7 @@ package Main.Implementation.Sorting.SortingStrategies;
 import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
-public class HeapSort<T extends Comparable<T>> extends SortAttributes<T> {
+public class HeapSort<T extends Comparable<T>> extends ISorting<T> {
     boolean animate;
 
     @Override

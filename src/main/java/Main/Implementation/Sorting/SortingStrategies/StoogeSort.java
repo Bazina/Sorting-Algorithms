@@ -5,7 +5,7 @@ import Main.Implementation.Sorting.Utils;
 
 import java.util.List;
 
-public class StoogeSort<T> extends SortAttributes<T> {
+public class StoogeSort<T> extends ISorting<T> {
     @Override
     public void sort() {
         boolean animate = moves.isEmpty();

@@ -4,7 +4,7 @@ import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
 
-public class QuickSort<T> extends SortAttributes<T> {
+public class QuickSort<T> extends ISorting<T> {
     boolean animate;
     @Override
     public void sort() {

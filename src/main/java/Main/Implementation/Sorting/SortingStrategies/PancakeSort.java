@@ -6,7 +6,7 @@ import Main.Implementation.Sorting.Utils;
 import java.util.List;
 import java.util.Queue;
 
-public class PancakeSort<T> extends SortAttributes<T> {
+public class PancakeSort<T> extends ISorting<T> {
     private boolean animate;
 
     @Override

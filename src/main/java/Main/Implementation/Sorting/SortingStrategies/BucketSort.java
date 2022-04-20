@@ -1,13 +1,11 @@
 package Main.Implementation.Sorting.SortingStrategies;
 
-import Main.Controller.Move;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class BucketSort<T> extends SortAttributes<T> {
+public class BucketSort<T> extends ISorting<T> {
 
     @Override
     public void sort() {

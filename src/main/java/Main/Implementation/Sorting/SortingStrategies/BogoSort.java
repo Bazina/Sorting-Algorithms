@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 //Slow Sort-Stupid Sort-Monkey Sort
-public class BogoSort<T> extends SortAttributes<T> {
+public class BogoSort<T> extends ISorting<T> {
     boolean animate;
     @Override
     public void sort() {

@@ -5,7 +5,7 @@ import Main.Implementation.Sorting.Utils;
 
 import java.util.List;
 
-public class BinaryInsertionSort<T> extends SortAttributes<T> {
+public class BinaryInsertionSort<T> extends ISorting<T> {
     boolean animate;
 
     @Override

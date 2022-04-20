@@ -5,7 +5,7 @@ import Main.Controller.Move;
 import java.util.List;
 
 //also named as cocktail sort due to its similarity to cocktail shaker sort
-public class DoubleSelectionSort<T> extends SortAttributes<T> {
+public class DoubleSelectionSort<T> extends ISorting<T> {
     @Override
     public void sort() {
         int n = toSort.size();

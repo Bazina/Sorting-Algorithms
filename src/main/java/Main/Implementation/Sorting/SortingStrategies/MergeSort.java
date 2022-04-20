@@ -5,7 +5,7 @@ import Main.Controller.Move;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSort<T> extends SortAttributes<T> {
+public class MergeSort<T> extends ISorting<T> {
     boolean animate;
     private List<T> temp;
 

@@ -5,7 +5,7 @@ import Main.Implementation.Sorting.Utils;
 
 
 //variation of bubble sort
-public class OddEvenSort<T> extends SortAttributes<T> {
+public class OddEvenSort<T> extends ISorting<T> {
     @Override
     public void sort() {
         boolean animate = moves.isEmpty();

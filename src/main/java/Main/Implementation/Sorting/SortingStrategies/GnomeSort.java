@@ -4,7 +4,7 @@ import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
 
-public class GnomeSort<T> extends SortAttributes<T> {
+public class GnomeSort<T> extends ISorting<T> {
     @Override
     public void sort() {
         boolean animate = moves.isEmpty();

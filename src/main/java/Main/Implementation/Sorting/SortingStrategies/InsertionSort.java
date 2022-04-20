@@ -3,7 +3,7 @@ package Main.Implementation.Sorting.SortingStrategies;
 
 import Main.Controller.Move;
 
-public class InsertionSort<T> extends SortAttributes<T> {
+public class InsertionSort<T> extends ISorting<T> {
     @Override
     public void sort() {
         boolean animate = moves.isEmpty();

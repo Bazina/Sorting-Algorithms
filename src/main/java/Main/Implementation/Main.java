@@ -56,7 +56,7 @@ public class Main {
         writer.close();
     }
 
-    public static double sort(SortAttributes<Integer> sortStrategy, String name) {
+    public static double sort(ISorting<Integer> sortStrategy, String name) {
         second = new ArrayList<>(first);
         start = System.currentTimeMillis();
         Sorting.Sort(second, sortStrategy, Comparator.reverseOrder(), null);

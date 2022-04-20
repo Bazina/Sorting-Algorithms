@@ -1,10 +1,9 @@
-package Main;
+package Main.Controller;
 
 
-import Main.Controller.Move;
 import Main.Implementation.Sorting.Sorting;
 import Main.Implementation.Sorting.SortingStrategies.MergeSort;
-import Main.Implementation.Sorting.SortingStrategies.SortAttributes;
+import Main.Implementation.Sorting.SortingStrategies.ISorting;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +31,6 @@ public class MainController implements Initializable {
     private TextField dataSize;
     @FXML
     private TextField Speed;
-    private List<Integer> arrayList;
     private Queue<Move> moves;
     private Object sortingStrategy;
 
@@ -71,7 +69,7 @@ public class MainController implements Initializable {
         if (canvasUtils.getDelay() < 0.0001) canvasUtils.setDelay(0.0001);
 
         Random rd = new Random();
-        arrayList = new ArrayList<>();
+        List<Integer> arrayList = new ArrayList<>();
         for (int i = 0; i < size; i++)
             arrayList.add((int) ((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight()));
 
@@ -90,7 +88,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
 
-        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), (SortAttributes<Integer>) sortingStrategy, moves));
+        Thread sort = new Thread(new Sorting(arrayList, Comparator.naturalOrder(), (ISorting<Integer>) sortingStrategy, moves));
         sort.start();
 
         Thread.sleep(100);

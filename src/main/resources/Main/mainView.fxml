@@ -5,52 +5,55 @@
 <?import java.lang.String?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-border-color: #BD0F09;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.MainController">
-   <children>
-      <Canvas fx:id="theCanvas" height="629.0" layoutY="91.0" onKeyPressed="#searchComboBox" scaleY="-1.0" width="1280.0" />
-      <JFXButton alignment="CENTER" layoutX="1127.0" layoutY="13.0" onAction="#startSorting" prefHeight="64.0" prefWidth="139.0" stylesheets="@Buttons.css" text="Sort" textFill="#f4f4f4">
-         <font>
-            <Font name="Segoe UI Bold" size="24.0" />
-         </font>
-      </JFXButton>
-      <JFXComboBox fx:id="SortComboBox" focusColor="GOLD" layoutX="834.0" layoutY="22.0" onKeyReleased="#searchComboBox" prefHeight="45.0" prefWidth="273.0" promptText="Select Sort Algorithm" stylesheets="@ComboBox.css" unFocusColor="#bd0f09">
-         <styleClass>
-            <String fx:value="combo-box-popup" />
-            <String fx:value="list-cell" />
-            <String fx:value="list-view" />
-            <String fx:value="decrement-arrow" />
-            <String fx:value="decrement-button" />
-            <String fx:value="increment-arrow" />
-            <String fx:value="increment-button" />
-            <String fx:value="scroll-bar" />
-            <String fx:value="thumb" />
-            <String fx:value="track" />
-         </styleClass></JFXComboBox>
-      <TextField fx:id="dataSize" layoutX="120.0" layoutY="25.0" prefHeight="45.0" prefWidth="106.0" promptText="Integer Value" styleClass="TextBox" stylesheets="@TextBox.css" text="50" />
-      <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Size" wrappingWidth="105.849609375">
-         <font>
-            <Font name="Segoe UI" size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="525.0" layoutY="64.0" stroke="#bd0f09" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="0.7" text="Vision" wrappingWidth="148.849609375">
-         <font>
-            <Font name="Segoe UI Bold" size="48.0" />
-         </font>
-      </Text>
-      <Text layoutX="665.0" layoutY="65.0" stroke="#bd0f09" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="0.3" text="Algo Analysis" wrappingWidth="90.0">
-         <font>
-            <Font name="Segoe UI Bold" size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="Speed" layoutX="323.0" layoutY="27.0" prefHeight="45.0" prefWidth="112.0" promptText="e.g. 1, 2, 0.5" styleClass="TextBox" stylesheets="@TextBox.css" text="1" />
-      <Text layoutX="246.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed" wrappingWidth="67.849609375">
-         <font>
-            <Font name="Segoe UI" size="24.0" />
-         </font>
-      </Text>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1280.0" style="-fx-border-color: #BD0F09;" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.MainController">
+   <Canvas fx:id="theCanvas" height="629.0" layoutY="91.0" onKeyPressed="#searchComboBox" scaleY="-1.0" width="1280.0"/>
+   <JFXButton alignment="CENTER" layoutX="1127.0" layoutY="13.0" onAction="#startSorting" prefHeight="64.0"
+              prefWidth="139.0" stylesheets="@Buttons.css" text="Sort" textFill="#f4f4f4">
+      <font>
+         <Font name="Segoe UI Bold" size="24.0"/>
+      </font>
+   </JFXButton>
+   <JFXComboBox fx:id="SortComboBox" focusColor="GOLD" layoutX="834.0" layoutY="22.0" onKeyReleased="#searchComboBox"
+                prefHeight="45.0" prefWidth="273.0" promptText="Select Sort Algorithm" stylesheets="@ComboBox.css"
+                unFocusColor="#bd0f09">
+      <styleClass>
+         <String fx:value="combo-box-popup"/>
+         <String fx:value="list-cell"/>
+         <String fx:value="list-view"/>
+         <String fx:value="decrement-arrow"/>
+         <String fx:value="decrement-button"/>
+         <String fx:value="increment-arrow"/>
+         <String fx:value="increment-button"/>
+         <String fx:value="scroll-bar"/>
+         <String fx:value="thumb"/>
+         <String fx:value="track"/>
+      </styleClass>
+   </JFXComboBox>
+   <TextField fx:id="dataSize" layoutX="120.0" layoutY="25.0" prefHeight="45.0" prefWidth="106.0"
+              promptText="Integer Value" styleClass="TextBox" stylesheets="@TextBox.css" text="50"/>
+   <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Size"
+         wrappingWidth="105.849609375">
+      <font>
+         <Font name="Segoe UI" size="24.0"/>
+      </font>
+   </Text>
+   <TextField fx:id="Speed" layoutX="323.0" layoutY="27.0" prefHeight="45.0" prefWidth="112.0"
+              promptText="e.g. 1, 2, 0.5" styleClass="TextBox" stylesheets="@TextBox.css" text="1"/>
+   <Text layoutX="246.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed"
+         wrappingWidth="67.849609375">
+      <font>
+         <Font name="Segoe UI" size="24.0"/>
+      </font>
+   </Text>
+   <ImageView fitHeight="54.0" fitWidth="312.0" layoutX="484.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Logo.png"/>
+   </ImageView>
 </AnchorPane>

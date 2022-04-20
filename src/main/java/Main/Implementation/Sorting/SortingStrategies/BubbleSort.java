@@ -3,7 +3,7 @@ package Main.Implementation.Sorting.SortingStrategies;
 import Main.Controller.Move;
 import Main.Implementation.Sorting.Utils;
 
-public class BubbleSort<T> extends SortAttributes<T> {
+public class BubbleSort<T> extends ISorting<T> {
     @Override
     public void sort() {
         boolean isSorted;

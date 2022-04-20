@@ -9,6 +9,7 @@ module Main {
     requires eu.hansolo.tilesfx;
     requires com.opencsv;
 
-    opens Main to javafx.fxml;
+    opens Main.Controller to javafx.fxml;
     exports Main;
+    exports Main.Controller;
 }

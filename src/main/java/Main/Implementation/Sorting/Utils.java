@@ -8,7 +8,4 @@ public class Utils {
         arrayList.set(first, arrayList.get(second));
         arrayList.set(second, temp);
     }
-
-
-
 }

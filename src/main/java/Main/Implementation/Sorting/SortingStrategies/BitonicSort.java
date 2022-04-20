@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 //only work with 2^k arrays
-public class BitonicSort<T> extends SortAttributes<T> {
+public class BitonicSort<T> extends ISorting<T> {
 
     @Override
     public void sort() {
