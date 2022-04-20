@@ -13,8 +13,7 @@ public class Vision extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Vision.class.getResource("mainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        Image icon = new Image("D:\\Library\\Programming\\Workshop\\Data Structures & Algorithms\\" +
-                               "Sorting Algorithms\\src\\main\\resources\\Icon.png");
+        Image icon = new Image("Icon.png");
         stage.getIcons().add(icon);
         stage.setTitle("Vision");
         stage.setScene(scene);
