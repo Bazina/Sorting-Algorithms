@@ -34,6 +34,7 @@ public class MainController implements Initializable {
     private TextField Speed;
 
     private double blockSize;
+    private boolean sorting = false;
 
     private GraphicsContext gc;
     private List<Integer> arrayList;
@@ -58,11 +59,6 @@ public class MainController implements Initializable {
                         .then("-fx-prompt-text-fill: transparent;")
                         .otherwise("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);"));
 
-        Speed.setText("1");
-
-        SortComboBox.setVisibleRowCount(7);
-        theCanvas.setScaleY(-1);
-
         gc = theCanvas.getGraphicsContext2D();
     }
 
@@ -80,7 +76,10 @@ public class MainController implements Initializable {
 
     @FXML
     private void startSorting() throws InterruptedException {
-        if (sortingStrategy == null) {
+        if(sorting) return;
+        else sorting = true;
+
+        if (SortComboBox.getValue() == null) {
             sortingStrategy = new MergeSort<>();
             SortComboBox.setValue("MergeSort");
         }
@@ -88,13 +87,11 @@ public class MainController implements Initializable {
         gc.clearRect(0, 0, theCanvas.getWidth(), theCanvas.getHeight());
 
         int size = 50;
-
         if (!dataSize.getText().equals("")) size = Integer.parseInt(dataSize.getText());
+        strokeExist = size <= 200;
 
         delay = delay / Double.parseDouble(Speed.getText());
         if (delay < 0.0001) delay = 0.0001;
-
-        strokeExist = size <= 200;
 
         Random rd = new Random();
         arrayList = new ArrayList<>();
@@ -102,11 +99,10 @@ public class MainController implements Initializable {
             arrayList.add((int) ((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight()));
 
         blockSize = theCanvas.getWidth() / arrayList.size();
+
         drawArray();
 
-
         String className = SortComboBox.getValue();
-
         try {
             sortingStrategy = new URLClassLoader(new URL[]{new URL("file://bin")})
                     .loadClass("Main.Implementation.Sorting.SortingStrategies." + className)
@@ -159,6 +155,7 @@ public class MainController implements Initializable {
     }
 
     private void end() {
+
         if (strokeExist) gc.setStroke(Color.rgb(244, 244, 244));
         else gc.setStroke(Color.GREEN);
 
@@ -178,6 +175,7 @@ public class MainController implements Initializable {
             timeline2.setOnFinished(e -> finalTimeline1.play());
             timeline2 = timeline1;
         }
+        sorting = false ;
     }
 
     private Timeline coloredTimeLine(Move current, Color color) {
