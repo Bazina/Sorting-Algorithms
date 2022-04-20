@@ -7,6 +7,7 @@ import Main.Implementation.Sorting.SortingStrategies.MergeSort;
 import Main.Implementation.Sorting.SortingStrategies.SortAttributes;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -42,14 +43,20 @@ public class MainController implements Initializable {
     private Object sortingStrategy;
     private double delay = 0.01;
     private boolean strokeExist = true;
+    private final String[] sorts = {"BinaryInsertionSort", "BitonicSort", "BogoSort", "BubbleSort",
+            "CocktailShakerSort", "CombSort", "CountingSort", "DoubleSelectionSort", "GnomeSort",
+            "HeapSort", "InPlaceMergeSort", "InsertionSort", "MergeSort", "OddEvenSort",
+            "OptimizedBubbleSort", "PancakeSort", "QuickSort", "SelectionSort", "ShellSort", "StoogeSort"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         moves = new LinkedList<>();
-        SortComboBox.getItems().addAll("BinaryInsertionSort", "BitonicSort", "BogoSort", "BubbleSort",
-                "CocktailShakerSort", "CombSort", "CountingSort", "DoubleSelectionSort", "GnomeSort",
-                "HeapSort", "InPlaceMergeSort", "InsertionSort", "MergeSort", "OddEvenSort",
-                "OptimizedBubbleSort", "PancakeSort", "QuickSort", "SelectionSort", "ShellSort", "StoogeSort");
+        SortComboBox.getItems().addAll(sorts);
+        SortComboBox.setEditable(true);
+        SortComboBox.styleProperty().bind(
+                Bindings.when(SortComboBox.focusedProperty())
+                        .then("-fx-prompt-text-fill: transparent;")
+                        .otherwise("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);"));
 
         Speed.setText("1");
 
@@ -202,5 +209,32 @@ public class MainController implements Initializable {
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightJ))
             );
         }
+    }
+
+    @FXML
+    private void searchComboBox() {
+        SortComboBox.hide();
+        String search = SortComboBox.getEditor().getText();
+        ArrayList<String> list = new ArrayList<>();
+
+        if (search != null)
+            SortComboBox.getItems().addAll(sorts);
+
+        for (String sort : sorts) {
+            if (search == null)
+                break;
+            if (sort.toLowerCase(Locale.ROOT).startsWith(search.toLowerCase(Locale.ROOT)))
+                list.add(sort);
+        }
+
+        SortComboBox.getItems().clear();
+        if (list.size() == 0)
+            SortComboBox.getItems().addAll(sorts);
+        else
+            SortComboBox.getItems().addAll(list);
+
+        SortComboBox.setVisibleRowCount((list.size() != 0) ? Math.min(list.size(), 7) : 7);
+
+        SortComboBox.show();
     }
 }
