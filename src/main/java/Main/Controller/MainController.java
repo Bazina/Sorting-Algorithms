@@ -58,7 +58,6 @@ public class MainController implements Initializable {
             sortingStrategy = new MergeSort<>();
             SortComboBox.setValue("MergeSort");
         }
-        canvasUtils.clear();
 
         String className = SortComboBox.getValue();
         try {
@@ -68,8 +67,11 @@ public class MainController implements Initializable {
 
         } catch (InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException |
                 InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
+            canvasUtils.setSorting(false);
+            return;
         }
+
+        canvasUtils.clear();
 
         int size = 50;
         if (!dataSize.getText().equals("")) size = Integer.parseInt(dataSize.getText());
@@ -130,7 +132,6 @@ public class MainController implements Initializable {
     private int nextPowerTwo(int size) {
         int buffer = 1;
         while (buffer * 2 < size) buffer *= 2;
-        System.out.println(buffer);
         return buffer;
     }
 }
