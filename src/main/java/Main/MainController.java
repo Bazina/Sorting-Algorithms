@@ -85,6 +85,7 @@ public class MainController implements Initializable {
         if (!dataSize.getText().equals("")) size = Integer.parseInt(dataSize.getText());
 
         delay = Double.parseDouble(Delay.getText());
+        if (delay < 0.0001) delay = 0.0001;
 
         strokeExist = size <= 200;
 
