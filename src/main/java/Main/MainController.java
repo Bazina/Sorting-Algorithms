@@ -3,15 +3,15 @@ package Main;
 
 import Main.Controller.Move;
 import Main.Implementation.Sorting.Sorting;
-import Main.Implementation.Sorting.SortingStrategies.*;
+import Main.Implementation.Sorting.SortingStrategies.SortAttributes;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
@@ -27,7 +27,8 @@ public class MainController implements Initializable {
     @FXML
     private ComboBox<String> SortComboBox;
     @FXML
-    private Button start;
+    private TextField dataSize;
+
     private double blockSize;
 
     private GraphicsContext gc;
@@ -37,6 +38,7 @@ public class MainController implements Initializable {
 
     private Object sortingStrategy;
     private double delay = 0.0001;
+    private boolean strokeExist = true ;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,30 +49,16 @@ public class MainController implements Initializable {
                 "OptimizedBubbleSort", "PancakeSort", "QuickSort", "SelectionSort", "ShellSort", "StoogeSort");
 
         SortComboBox.setVisibleRowCount(7);
-
-        Random rd = new Random();
         theCanvas.setScaleY(-1);
 
         gc = theCanvas.getGraphicsContext2D();
-        arrayList = new ArrayList<>();
-        for (int i = 0; i < 30; i++)
-            arrayList.add((int) ((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight()));
-
-        blockSize = theCanvas.getWidth() / arrayList.size();
-        drawArray();
-
-        start.setOnMouseClicked(e -> {
-            try {
-                startSorting();
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        });
     }
 
     private void drawArray() {
         gc.setFill(Color.BLACK);
-        gc.setStroke(Color.rgb(244, 244, 244));
+
+        if(strokeExist)gc.setStroke(Color.rgb(244, 244, 244));
+        else gc.setStroke(Color.BLACK);
 
         for (int i = 0; i < arrayList.size(); i++) {
             gc.fillRect(i * blockSize, 0, blockSize, arrayList.get(i));
@@ -78,7 +66,25 @@ public class MainController implements Initializable {
         }
     }
 
+    @FXML
     private void startSorting() throws InterruptedException {
+        gc.clearRect(0, 0, theCanvas.getWidth(), theCanvas.getHeight());
+
+        int size = 50;
+
+        if (!dataSize.getText().equals(""))  size = Integer.parseInt(dataSize.getText());
+
+        strokeExist = size <= 200;
+
+        Random rd = new Random();
+        arrayList = new ArrayList<>();
+        for (int i = 0; i < size; i++)
+            arrayList.add((int) ((Math.abs(rd.nextInt()) + 1) % theCanvas.getHeight()));
+
+        blockSize = theCanvas.getWidth() / arrayList.size();
+        drawArray();
+
+
         String className = SortComboBox.getValue();
 
         try {
@@ -87,7 +93,7 @@ public class MainController implements Initializable {
                     .getDeclaredConstructor().newInstance();
 
         } catch (InstantiationException | MalformedURLException | ClassNotFoundException | NoSuchMethodException |
-                 InvocationTargetException | IllegalAccessException e) {
+                InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
@@ -133,6 +139,9 @@ public class MainController implements Initializable {
     }
 
     private void end() {
+        if(strokeExist)gc.setStroke(Color.rgb(244, 244, 244));
+        else gc.setStroke(Color.GREEN);
+
         Timeline timeline1;
         Timeline timeline2;
 
@@ -165,8 +174,8 @@ public class MainController implements Initializable {
                     new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.i * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.j * blockSize, 0, blockSize, current.heightJ)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.j * blockSize, 0, blockSize, current.heightI)),
-                    new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.i * blockSize, 0, blockSize, current.heightJ)),
+                    new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightJ))
             );
         } else {
