@@ -8,6 +8,7 @@ module Main {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.opencsv;
+    requires java.desktop;
 
     opens Main.Controller to javafx.fxml;
     exports Main;

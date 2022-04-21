@@ -8,6 +8,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.List;
 import java.util.Queue;
 
@@ -109,7 +112,9 @@ public class CanvasUtils {
                     new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.i * blockSize, 0, blockSize, theCanvas.getHeight())),
                     new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.j * blockSize, 0, blockSize, theCanvas.getHeight())),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.j * blockSize, 0, blockSize, current.heightI)),
+                    new KeyFrame(Duration.seconds(delay), e -> playClip()),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.i * blockSize, 0, blockSize, current.heightJ)),
+                    new KeyFrame(Duration.seconds(delay), e -> playClip()),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightJ))
             );
@@ -119,13 +124,26 @@ public class CanvasUtils {
                     new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.i * blockSize, 0, blockSize, theCanvas.getHeight())),
                     new KeyFrame(Duration.seconds(delay), e -> gc.clearRect(current.j * blockSize, 0, blockSize, theCanvas.getHeight())),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.i * blockSize, 0, blockSize, current.heightI)),
+                    new KeyFrame(Duration.seconds(delay), e -> playClip()),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.i * blockSize, 0, blockSize, current.heightI)),
                     new KeyFrame(Duration.seconds(delay), e -> gc.fillRect(current.j * blockSize, 0, blockSize, current.heightJ)),
+                    new KeyFrame(Duration.seconds(delay), e -> playClip()),
                     new KeyFrame(Duration.seconds(delay), e -> gc.strokeRect(current.j * blockSize, 0, blockSize, current.heightJ))
             );
         }
     }
 
+    private void playClip(){
+        File sound = new File("src/main/resources/sound.wav");
+
+        try{
+            Clip audio = AudioSystem.getClip();
+            audio.open(AudioSystem.getAudioInputStream(sound));
+            audio.start();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void setBlockSize(double blockSize) {
         this.blockSize = blockSize;
