@@ -126,6 +126,7 @@ public class CanvasUtils {
         }
     }
 
+
     public void setBlockSize(double blockSize) {
         this.blockSize = blockSize;
     }
