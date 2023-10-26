@@ -94,7 +94,10 @@ The test can be found [here](https://github.com/Bazina/Sorting-Algorithms/tree/m
 ## Demo
 
 
-----------------> Video here <----------------
+
+
+https://github.com/Bazina/Sorting-Algorithms/assets/63814228/b042c671-0234-4f39-8bc8-6129e9b95530
+
 
 
 
