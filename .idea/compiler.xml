@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Sorting Algorithms" />
+        <module name="Sorting-Algorithms" />
+        <module name="Implementation.Sorting-Algorithms" />
         <module name="Sorting" />
       </profile>
     </annotationProcessing>

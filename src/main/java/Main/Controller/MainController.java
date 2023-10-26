@@ -29,8 +29,10 @@ public class MainController implements Initializable {
     private ComboBox<String> SortComboBox;
     @FXML
     private TextField dataSize;
+
     @FXML
     private TextField Speed;
+
     private Queue<Move> moves;
     private Object sortingStrategy;
 
