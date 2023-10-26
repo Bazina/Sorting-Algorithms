@@ -10,6 +10,7 @@ it is possible to change the speed of the visualization and the size of the arra
 - [Motivation](#Motivation)
 - [Features](#Features)
 - [Installation](#Installation)
+- [Exutable App](#Exutable-App)
 - [Usage](#Usage)
 - [Tests](#Tests)
 - [Demo](#Demo)
@@ -54,6 +55,11 @@ computer science, and it is used in many applications and improving its performa
 - Change the speed of the visualization.
 - Change the size of the array.
 
+
+## Exutable App
+
+Executable version of the app can be found [here](https://github.com/Bazina/Sorting-Algorithms/tree/master/Executable%20File). 
+To run it, you only need to download it and have `Java 17` or higher on your machine.
 
 
 ## Installation
