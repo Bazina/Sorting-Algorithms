@@ -2,7 +2,7 @@
 This repository represents a project for visualizing sorting algorithms in java using JavaFX. The application has more than 20 sorting algorithms and 
 it is possible to change the speed of the visualization and the size of the array.
 
-![Asset 1](https://github.com/Bazina/Sorting-Algorithms/assets/63814228/66717795-65a5-44ff-8066-a9ed09089b90)
+![Asset 1](https://github.com/Bazina/Sorting-Algorithms/blob/master/Logo/1x/Asset%201.png)
 
 
 
