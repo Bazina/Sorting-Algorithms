@@ -76,9 +76,10 @@ The project was developed using `IntelliJ IDEA` and `Java 17`.
 3. The default **size** of the array is `100` so if you want to make it **smaller** you can choose a number **less** than `100` and if you want to make it **bigger** you can choose a number **greater** than `100`. 
 4. Click on **Sort** to start the visualization.
 
-![image](https://github.com/Bazina/Sorting-Algorithms/assets/63814228/3489c1a1-7d8c-43e2-b30d-6c6de0151e0a)
+![image](https://github.com/Bazina/Sorting-Algorithms/assets/63814228/c9004b86-af4d-4c22-8371-ddd59e8cb128)
 
-![image](https://github.com/Bazina/Sorting-Algorithms/assets/63814228/028b8c31-1867-4377-ba4e-f676d0ee9fac)
+![image](https://github.com/Bazina/Sorting-Algorithms/assets/63814228/be087e1e-9285-45dd-84ae-5707af2d5d0b)
+
 
 
 
@@ -102,7 +103,8 @@ The test can be found [here](https://github.com/Bazina/Sorting-Algorithms/tree/m
 
 
 
-https://github.com/Bazina/Sorting-Algorithms/assets/63814228/b042c671-0234-4f39-8bc8-6129e9b95530
+https://github.com/Bazina/Sorting-Algorithms/assets/63814228/66779e8f-30ab-47f7-8937-442c96f8037a
+
 
 
 
